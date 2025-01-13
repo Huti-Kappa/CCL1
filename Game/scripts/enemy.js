@@ -3,11 +3,15 @@ import { global } from "./global.js";
 export class Enemy {
     x = global.canvas.width / 2;
     y = global.canvas.height / 2;
+
     hitboxWidth = 10;
     hitboxHeight = 10;
-    colWidth = 10;
+
+    colWidth = 10; //innerHitbox
     colHeight = 10;
-    hitboxAdd = 100;
+    hitboxAdd = 100; //outerHitbox
+
+    alreadyHit = false;
     offsetX = 0;
     offsetY = 0;
     posX = 0;
@@ -21,11 +25,17 @@ export class Enemy {
         this.offsetY = (direction === 4) ? global.enemy.distanceY : (direction === 2) ? -global.enemy.distanceY : 0;
     }
 
+    //Calculate X Y Coordinates for movement
     update() {
         this.x -= this.offsetX * global.enemy.speedMultiplier * global.deltaTime;
         this.y -= this.offsetY * global.enemy.speedMultiplier * global.deltaTime;
     }
+    
+    getDir(){
+        return this.direction;
+    }
 
+    //Makes projectiles move
     draw() {
         if (this.offsetX || this.offsetY) {
             this.posX = this.x - this.hitboxWidth / 2 + this.offsetX;
@@ -43,32 +53,40 @@ export class Enemy {
         }
     }
 
+    //Returns 1 if Outer Hitbox gets hit
+    //Returns 2 if Inner Death Hitbox gets hit
     collisionDetection() {
-        const canvasCenter = { x: global.canvas.width / 2, y: global.canvas.height / 2 };
+        if(this.alreadyHit==false){
+            const canvasCenter = { x: global.canvas.width / 2, y: global.canvas.height / 2 };
 
-        const checkCollision = (pos, center, size, add) => {
-            const outerMin = center - size - add;
-            const outerMax = center + size + add;
-            const innerMin = center - size;
-            const innerMax = center + size;
+            const checkCollision = (pos, center, size, add) => {
+                const outerMin = center - size - add;
+                const outerMax = center + size + add;
+                const innerMin = center - size;
+                const innerMax = center + size;
 
-            if (pos > outerMin && pos < outerMax) {
-                return (pos > innerMin && pos < innerMax) ? 2 : 1;
+                if (pos > outerMin && pos < outerMax) {
+                    return (pos > innerMin && pos < innerMax) ? 2 : 1;
+                }
+                return 0;
+            };
+
+            if (this.direction === 1 || this.direction === 3) {
+                return checkCollision(this.posX, canvasCenter.x, this.colWidth, this.hitboxAdd);
             }
-            return 0;
-        };
 
-        if (this.direction === 1 || this.direction === 3) {
-            return checkCollision(this.posX, canvasCenter.x, this.colWidth, this.hitboxAdd);
+            if (this.direction === 2 || this.direction === 4) {
+                return checkCollision(this.posY, canvasCenter.y, this.colHeight, this.hitboxAdd);
+            }
         }
-
-        if (this.direction === 2 || this.direction === 4) {
-            return checkCollision(this.posY, canvasCenter.y, this.colHeight, this.hitboxAdd);
-        }
-
+        
         return 0;
     }
+
+
+
     changeColor(){
+        this.alreadyHit = true;
         this.color = true;
     }
 

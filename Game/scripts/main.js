@@ -5,9 +5,11 @@ function gameLoop(totalRunningTime) {
     global.deltaTime = (totalRunningTime - global.prevTotalRunningTime) / 1000; // Convert ms to seconds
     global.prevTotalRunningTime = totalRunningTime;
     global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
+
+
     // Handle enemy creation with a fixed interval
     global.handleEnemyCreation();
-    global.ctx.fillRect(global.canvas.width/2 -5,global.canvas.height/2 -5, 10,10);
+
     // Update and draw all game objects
     for (const key in global.allGameObjects) {
         global.allGameObjects[key].update();
@@ -16,8 +18,9 @@ function gameLoop(totalRunningTime) {
             global.allGameObjects[key].changeColor();
             global.hp--;
         }
-
+        
     }
+    global.ctx.fillRect(global.canvas.width/2 -5,global.canvas.height/2 -5, 10,10);
     global.checkStatus();
     requestAnimationFrame(gameLoop);
 }
@@ -27,18 +30,20 @@ function controlls(event) {
     for (const key in global.allGameObjects) {
         const gameObject = global.allGameObjects[key];
         if (gameObject.collisionDetection() === 1) {
-            switch (event.key) {
-                case "w":
-                case "a":
-                case "s":
-                case "d":
-                    console.log("HIT");
-                    global.allGameObjects[key].changeColor();
-                    break;
+            const dir = gameObject.getDir();
+            if (
+                (event.key === "w" && dir === 2) ||
+                (event.key === "a" && dir === 1) ||
+                (event.key === "s" && dir === 4) ||
+                (event.key === "d" && dir === 3)
+            ) {
+                console.log("HIT");
+                gameObject.changeColor();
             }
         }
     }
 }
+
 
 
 
