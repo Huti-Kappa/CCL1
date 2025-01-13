@@ -21,7 +21,7 @@ function gameLoop(totalRunningTime) {
         }
         
     }
-    global.ctx.fillRect(global.canvas.width/2 -5,global.canvas.height/2 -5, 10,10);
+    global.ctx.fillRect(global.canvas.width/2 -40,global.canvas.height/2 -40, 80,80);
     global.checkStatus();
     requestAnimationFrame(gameLoop);
 }
