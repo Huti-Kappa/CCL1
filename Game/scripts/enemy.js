@@ -85,7 +85,7 @@ export class Enemy {
 
 
 
-    changeColor(){
+    destroyBullet(){
         this.alreadyHit = true;
         this.color = true;
     }

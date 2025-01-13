@@ -15,8 +15,9 @@ function gameLoop(totalRunningTime) {
         global.allGameObjects[key].update();
         global.allGameObjects[key].draw();
         if(global.allGameObjects[key].collisionDetection()==2){
-            global.allGameObjects[key].changeColor();
+            global.allGameObjects[key].destroyBullet();
             global.hp--;
+            console.log("Damage")
         }
         
     }
@@ -24,6 +25,7 @@ function gameLoop(totalRunningTime) {
     global.checkStatus();
     requestAnimationFrame(gameLoop);
 }
+
 
 
 function controlls(event) {
@@ -38,7 +40,7 @@ function controlls(event) {
                 (event.key === "d" && dir === 3)
             ) {
                 console.log("HIT");
-                gameObject.changeColor();
+                gameObject.destroyBullet();
             }
         }
     }
