@@ -1,13 +1,13 @@
 import { global } from "./global.js";
 
-export class Buttony {
+export class Button {
     constructor(){
 
     }
 
-    drawBut(){
+    draw(){
         global.ctx.fillStyle="black";
-        global.ctx.fillRect="100,100,100,50";
+        global.ctx.fillRect=(0,0,100,50);
     }
 
 }

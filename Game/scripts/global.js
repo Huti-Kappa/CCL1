@@ -2,6 +2,7 @@ import { gameSettings as gs} from './settings.js';
 import { Enemy } from "./enemy.js";
 
 
+
 const global = {};
 
 global.canvas = document.querySelector("#canvas");
@@ -22,6 +23,7 @@ global.enemy = gs.dirk;
 global.hp = gs.player.health;
 global.attackPatternCount = 0;
 global.gameloss = false;
+global.currentScreen = 0;
 
 
 global.handleEnemyCreation = function () {
@@ -52,14 +54,10 @@ global.resetStage = function () {
 }
 
 global. drawTextOnCanvas = function (text, x, y, font = "30px Arial", color = "black") {
-    // Hintergrund löschen
 
-
-    // Schriftstil setzen
     global.ctx.font = font;
     global.ctx.fillStyle = color;
 
-    // Text auf das Canvas zeichnen
     global.ctx.fillText(text, x, y);
 }
 
