@@ -1,6 +1,7 @@
 import { gameSettings as gs} from './settings.js';
 import { Enemy } from "./enemy.js";
 
+
 const global = {};
 
 global.canvas = document.querySelector("#canvas");
@@ -20,6 +21,7 @@ global.hitCounter = 0;
 global.enemy = gs.dirk;
 global.hp = gs.player.health;
 global.attackPatternCount = 0;
+global.gameloss = false;
 
 
 global.handleEnemyCreation = function () {
@@ -36,6 +38,7 @@ global.handleEnemyCreation = function () {
 
 global.checkStatus = function () {
     if(global.hp==0){
+        global.gameloss=true;
         console.log("FAIL")
     }
 }
@@ -48,5 +51,16 @@ global.resetStage = function () {
     global.attackPatternCount++;
 }
 
+global. drawTextOnCanvas = function (text, x, y, font = "30px Arial", color = "black") {
+    // Hintergrund löschen
+
+
+    // Schriftstil setzen
+    global.ctx.font = font;
+    global.ctx.fillStyle = color;
+
+    // Text auf das Canvas zeichnen
+    global.ctx.fillText(text, x, y);
+}
 
 export { global }
