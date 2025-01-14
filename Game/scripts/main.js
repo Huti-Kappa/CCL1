@@ -1,5 +1,5 @@
 import { global } from "./global.js";
-
+import { Screen } from "./screens.js";
 
 function gameLoop(totalRunningTime) {
     global.deltaTime = (totalRunningTime - global.prevTotalRunningTime) / 1000; // Convert ms to seconds
@@ -31,7 +31,9 @@ function gameLoop(totalRunningTime) {
         global.checkStatus();
         global.drawTextOnCanvas("Hallo",200,200,"arial","red");
     }
-
+    global.button.draw();
+    const s = new Screen();
+    s.draw();
     requestAnimationFrame(gameLoop);
 }
 
