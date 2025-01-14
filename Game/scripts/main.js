@@ -9,6 +9,9 @@ function gameLoop(totalRunningTime) {
 
     // Handle enemy creation with a fixed interval
     global.handleEnemyCreation();
+    if(global.hitCounter==global.enemyAmount){
+        global.resetStage();
+    }
 
     // Update and draw all game objects
     for (const key in global.allGameObjects) {

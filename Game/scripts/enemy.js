@@ -86,6 +86,9 @@ export class Enemy {
 
 
     destroyBullet(){
+        if( this.alreadyHit==false){
+            global.hitCounter++;
+        }
         this.alreadyHit = true;
         this.color = true;
     }
