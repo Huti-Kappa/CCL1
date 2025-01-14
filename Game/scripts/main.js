@@ -1,5 +1,7 @@
 import { global } from "./global.js";
 import { Screen } from "./screens.js";
+import { gameSettings as gs} from './settings.js';
+import { Button } from "./button.js";
 
 function gameLoop(totalRunningTime) {
     global.deltaTime = (totalRunningTime - global.prevTotalRunningTime) / 1000; // Convert ms to seconds
@@ -31,9 +33,11 @@ function gameLoop(totalRunningTime) {
         global.checkStatus();
         global.drawTextOnCanvas("Hallo",200,200,"arial","red");
     }
-    global.button.draw();
-    const s = new Screen();
-    s.draw();
+
+    if(global.currentScreen==0){
+        global.s.draw();
+    }
+
     requestAnimationFrame(gameLoop);
 }
 
@@ -57,10 +61,14 @@ function controlls(event) {
     }
 }
 
+function setupScreen(s){
 
-
-
+    for (let key = 0; key < gs.mainScreen.buttons.length; key++) {
+        s.addButton(new Button(gs.game.screenWidth/2-gs.mainScreen.width/2,gs.mainScreen.y+gs.mainScreen.gap*key,gs.mainScreen.width,gs.mainScreen.height,gs.mainScreen.buttons[key],gs.mainScreen.size,gs.mainScreen.font,"black"));
+    }
+}
 
 // Start the game loop
+setupScreen(global.s)
 requestAnimationFrame(gameLoop);
 document.addEventListener("keypress", controlls);

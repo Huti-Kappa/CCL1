@@ -1,6 +1,6 @@
 import { gameSettings as gs} from './settings.js';
 import { Enemy } from "./enemy.js";
-import { Button } from "./button.js";
+import { Screen } from "./screens.js";
 
 
 
@@ -16,8 +16,7 @@ global.enemyCreationTime = 0;
 global.centerX = global.canvas.width / 2;
 global.centerY = global.canvas.height / 2;
 
-global.button = new Button(100,100,200,100,"teset",30,"Inter");
-
+global.s = new Screen();
 global.allGameObjects = [];
 global.enemyCounter = 0;
 global.enemyAmount = 0;
@@ -28,6 +27,7 @@ global.attackPatternCount = 0;
 global.gameloss = false;
 global.currentScreen = 0;
 global.isMouseClicked = false;
+
 
 
 global.handleEnemyCreation = function () {

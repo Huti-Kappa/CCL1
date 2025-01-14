@@ -24,4 +24,28 @@ export const gameSettings = {
         speed: 5,
         attackPower: 20,
     },
+    
+    mainScreen:{
+        text: ["a","b"],
+        buttons: ["Start","Settings","Credits"],
+        font: "Tiny5",
+        size: 30,
+        width: 200,
+        height: 80,
+        x: 100,
+        y: 100,
+        gap: 100
+    },
+
+    pauseScreen:{
+        text: ["a","b"],
+        buttons: ["Start","Settings","Credits"],
+        font: "Tiny5",
+        size: 30,
+        width: 100,
+        height: 100,
+        x: 100,
+        y: 100,
+        gap: 2000
+    }
 };

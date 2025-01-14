@@ -1,9 +1,9 @@
 import { global } from "./global.js";
 
 export class Button {
-    clickable = false;
-
-    constructor(x, y, width, height, text, fontSize, fontFamily, onClick) {
+    clickable = true;
+    color = "black";
+    constructor(x, y, width, height, text, fontSize, fontFamily, backgroundcolor) {
         this.x = x;
         this.y = y;
         this.height = height;
@@ -11,24 +11,26 @@ export class Button {
         this.text = text;
         this.fontSize = fontSize;
         this.fontFamily = fontFamily;
-        this.onClick = onClick; // Callback for click action
+        this.backgroundcolor = backgroundcolor;
     }
 
     draw() {
-        global.ctx.fillStyle = "black";
+        this.color=this.backgroundcolor;
+        if(this.clickable==true){
+            if(this.click()==true){
+                this.color="grey";
+        }
+        global.ctx.fillStyle = this.color;
         global.ctx.fillRect(this.x, this.y, this.width, this.height);
 
         global.ctx.fillStyle = "white";
         global.ctx.font = `${this.fontSize}px ${this.fontFamily}`;
 
         const textMetrics = global.ctx.measureText(this.text);
-        const textY = this.y + (this.height + this.fontSize) / 2;
+        const textY = this.y + (this.height + this.fontSize) / 2.3;
         const textX = this.x + (this.width - textMetrics.width) / 2;
 
         global.ctx.fillText(this.text, textX, textY);
-        if(this.click()==true){
-            if(global.isMouseClicked==true){
-            console.log("LOL")}
         }
     }
 
@@ -36,11 +38,4 @@ export class Button {
         return !(global.mouseX < this.x || global.mouseX > this.x + this.width || global.mouseY < this.y || global.mouseY > this.y + this.height)
     }
 
-    clicked(){
-        if(this.clickable == true){
-            if (this.click()==true){
-                console.log("IT WORKED!");
-            }
-        }
-    }
 }
