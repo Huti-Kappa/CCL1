@@ -71,7 +71,6 @@ global.drawTextOnCanvas = function (text, x, y, font = "30px Arial", color = "bl
 
     global.ctx.font = font;
     global.ctx.fillStyle = color;
-
     global.ctx.fillText(text, x, y);
 }
 
