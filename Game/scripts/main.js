@@ -8,34 +8,34 @@ function gameLoop(totalRunningTime) {
     global.prevTotalRunningTime = totalRunningTime;
     global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
 
-    if(global.gameloss==true){
-        console.log("LOSS");
-    }else{
-        // Handle enemy creation with a fixed interval
-        global.handleEnemyCreation();
-        
-        if(global.hitCounter==global.enemyAmount){
-            global.resetStage();
-        }
-
-        // Update and draw all game objects
-        for (const key in global.allGameObjects) {
-            global.allGameObjects[key].update();
-            global.allGameObjects[key].draw();
-            if(global.allGameObjects[key].collisionDetection()==2){
-                global.allGameObjects[key].destroyBullet();
-                global.hp--;
-                console.log("Damage")
-            }
-            
-        }
-        global.ctx.fillRect(global.canvas.width/2 -40,global.canvas.height/2 -40, 80,80);
-        global.checkStatus();
-        global.drawTextOnCanvas("Hallo",200,200,"arial","red");
-    }
-
     if(global.currentScreen==0){
         global.s.draw();
+    }else {
+        if(global.gameloss==true){
+            console.log("LOSS");
+        }else{
+            // Handle enemy creation with a fixed interval
+            global.handleEnemyCreation();
+            
+            if(global.hitCounter==global.enemyAmount){
+                global.resetStage();
+            }
+    
+            // Update and draw all game objects
+            for (const key in global.allGameObjects) {
+                global.allGameObjects[key].update();
+                global.allGameObjects[key].draw();
+                if(global.allGameObjects[key].collisionDetection()==2){
+                    global.allGameObjects[key].destroyBullet();
+                    global.hp--;
+                    console.log("Damage")
+                }
+                
+            }
+            global.ctx.fillRect(global.canvas.width/2 -40,global.canvas.height/2 -40, 80,80);
+            global.checkStatus();
+            global.drawTextOnCanvas("Hallo",200,200,"arial","red");
+        }
     }
 
     requestAnimationFrame(gameLoop);
@@ -64,7 +64,7 @@ function controlls(event) {
 function setupScreen(s){
 
     for (let key = 0; key < gs.mainScreen.buttons.length; key++) {
-        s.addButton(new Button(gs.game.screenWidth/2-gs.mainScreen.width/2,gs.mainScreen.y+gs.mainScreen.gap*key,gs.mainScreen.width,gs.mainScreen.height,gs.mainScreen.buttons[key],gs.mainScreen.size,gs.mainScreen.font,"black"));
+        s.addButton(new Button(gs.game.screenWidth/2-gs.mainScreen.width/2,gs.mainScreen.y+gs.mainScreen.gap*key,gs.mainScreen.width,gs.mainScreen.height,gs.mainScreen.buttons[key].label,gs.mainScreen.size,gs.mainScreen.font,"black",gs.mainScreen.buttons[key].action));
     }
 }
 

@@ -1,3 +1,5 @@
+import { global } from "./global.js";
+
 export const gameSettings = {
     dirk: {
         name: "EnemyName",  
@@ -27,19 +29,39 @@ export const gameSettings = {
     
     mainScreen:{
         text: ["a","b"],
-        buttons: ["Start","Settings","Credits"],
+        buttons: [
+            {
+                label: "Start",
+                action: () => {
+                    console.log("Game Started!");
+                    global.currentScreen++;
+                }
+            },
+            {
+                label: "Settings",
+                action: () => {
+                    console.log("Settings Opened!");
+                }
+            },
+            {
+                label: "Credits",
+                action: () => {
+                    console.log("Credits Displayed!");
+                }
+            },
+        ],
         font: "Tiny5",
         size: 30,
         width: 200,
         height: 80,
         x: 100,
         y: 100,
-        gap: 100
+        gap: 100,
     },
 
     pauseScreen:{
         text: ["a","b"],
-        buttons: ["Start","Settings","Credits"],
+        buttons: ["Resume","Settings","Credits"],
         font: "Tiny5",
         size: 30,
         width: 100,
@@ -47,5 +69,37 @@ export const gameSettings = {
         x: 100,
         y: 100,
         gap: 2000
-    }
+    },
+
+    gameOver:{
+        text: ["a","b"],
+        buttons: [
+            {
+                label: "Restart",
+                action: () => {
+                    console.log("Game Started!");
+                    global.currentScreen++;
+                }
+            },
+            {
+                label: "Title Screen",
+                action: () => {
+                    console.log("Settings Opened!");
+                }
+            },
+            {
+                label: "Stats",
+                action: () => {
+                    console.log("Credits Displayed!");
+                }
+            },
+        ],
+        font: "Tiny5",
+        size: 30,
+        width: 200,
+        height: 80,
+        x: 100,
+        y: 100,
+        gap: 100,
+    },
 };

@@ -3,7 +3,7 @@ import { global } from "./global.js";
 export class Button {
     clickable = true;
     color = "black";
-    constructor(x, y, width, height, text, fontSize, fontFamily, backgroundcolor) {
+    constructor(x, y, width, height, text, fontSize, fontFamily, backgroundcolor, onclick) {
         this.x = x;
         this.y = y;
         this.height = height;
@@ -12,6 +12,7 @@ export class Button {
         this.fontSize = fontSize;
         this.fontFamily = fontFamily;
         this.backgroundcolor = backgroundcolor;
+        this.onclick = onclick;
     }
 
     draw() {
@@ -37,5 +38,10 @@ export class Button {
     click(){
         return !(global.mouseX < this.x || global.mouseX > this.x + this.width || global.mouseY < this.y || global.mouseY > this.y + this.height)
     }
-
-}
+    clickme(){
+        if(this.clickable==true){
+            if(this.click()==true){
+                this.onclick();
+        }
+    }
+}}

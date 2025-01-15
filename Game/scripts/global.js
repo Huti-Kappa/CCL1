@@ -80,6 +80,9 @@ document.addEventListener('click', () => {
 
 // Example function that gets called on click
 global.handleClickAction = function() {
+    for (const key in global.s.buttons) {
+        global.s.buttons[key].clickme();
+    }
     console.log("Click action triggered at:", global.mouseX, global.mouseY);
     // Perform your actions based on the click here
 }
