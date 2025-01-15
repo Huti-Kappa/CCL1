@@ -61,14 +61,26 @@ function controlls(event) {
     }
 }
 
-function setupScreen(s){
-
-    for (let key = 0; key < gs.mainScreen.buttons.length; key++) {
-        s.addButton(new Button(gs.game.screenWidth/2-gs.mainScreen.width/2,gs.mainScreen.y+gs.mainScreen.gap*key,gs.mainScreen.width,gs.mainScreen.height,gs.mainScreen.buttons[key].label,gs.mainScreen.size,gs.mainScreen.font,"black",gs.mainScreen.buttons[key].action));
+function setupScreen(s, screenConfig) {
+    for (let key = 0; key < screenConfig.buttons.length; key++) {
+        const buttonConfig = screenConfig.buttons[key];
+        s.addButton(
+            new Button(
+                gs.game.screenWidth / 2 - screenConfig.width / 2,
+                screenConfig.y + screenConfig.gap * key,          
+                screenConfig.width, 
+                screenConfig.height,
+                buttonConfig.label, 
+                screenConfig.size,  
+                screenConfig.font,  
+                "black",            
+                buttonConfig.action 
+            )
+        );
     }
 }
 
 // Start the game loop
-setupScreen(global.s)
+setupScreen(global.s,gs.mainScreen)
 requestAnimationFrame(gameLoop);
 document.addEventListener("keypress", controlls);
