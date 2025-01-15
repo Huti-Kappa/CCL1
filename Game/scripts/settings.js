@@ -30,7 +30,8 @@ export const gameSettings = {
     game: {
         screenWidth: 1024,
         screenHeight: 576,
-        stages: [1,2,3,4]
+        stages: [1,2,3,4],
+        textGap: 30,
     },
 
     player: {
@@ -40,7 +41,7 @@ export const gameSettings = {
     },
     
     mainScreen:{
-        text: ["a","b"],
+        text: ["Ergenekon teste mein Text System","LOL"],
         buttons: [
             {
                 label: "Start",
@@ -67,7 +68,7 @@ export const gameSettings = {
         width: 200,
         height: 80,
         x: 100,
-        y: 100,
+        y: 200,
         gap: 100,
     },
 
