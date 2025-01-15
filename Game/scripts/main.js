@@ -10,11 +10,14 @@ function gameLoop(totalRunningTime) {
     global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
 
     
-    if(global.currentScreen==0){
-        global.s.draw();
+    if(global.currentScreen!=1){
+        screenStateManager();
     }else {
         if(global.gameloss==true){
+            global.currentScreen++;
+            global.currentScreenValue = gs.gameOver;
             console.log("LOSS");
+            setupScreen(global.sc,global.currentScreenValue);
         }else{
             // Handle enemy creation with a fixed interval
             global.handleEnemyCreation();
@@ -42,10 +45,6 @@ function gameLoop(totalRunningTime) {
 
     requestAnimationFrame(gameLoop);
 }
-
-
-
-
 
 
 
@@ -89,7 +88,7 @@ function setupScreen(s, screenConfig) {
         s.addText(
             new Text(
                 gs.game.screenWidth / 2 - screenConfig.width / 2,
-                screenConfig.y/2 + gs.game.textGap * key,          
+                screenConfig.textY/2 + gs.game.textGap * key,          
                 screenConfig.width, 
                 screenConfig.height,
                 screenConfig.text[key], 
@@ -98,9 +97,38 @@ function setupScreen(s, screenConfig) {
             )
         );
     }
+    if (screenConfig.top && screenConfig.top.trim() !== ""){
+        s.addText(
+            new Text(
+                global.centerY+50,
+                170,          
+                1, 
+                1,
+                screenConfig.top, 
+                100,  
+                screenConfig.font,
+                screenConfig.color
+            ))
+    }
+}
+
+function screenStateManager() {
+    switch (global.currentScreen) {
+        case 0:
+            // Handle the case for screen 0 (e.g., main menu, start screen)
+            global.s.draw();
+            break;
+        case 2:
+            // Handle the case for screen 2 (e.g., some gameplay screen)
+            global.sc.draw();
+            break;
+        default:
+            // Handle other cases or default behavior
+            break;
+    }
 }
 
 // Start the game loop
-setupScreen(global.s,gs.mainScreen)
 requestAnimationFrame(gameLoop);
+setupScreen(global.s,global.currentScreenValue)
 document.addEventListener("keypress", controlls);

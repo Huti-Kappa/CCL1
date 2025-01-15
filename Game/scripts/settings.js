@@ -28,8 +28,8 @@ export const gameSettings = {
     },
 
     game: {
-        screenWidth: 1024,
-        screenHeight: 576,
+        screenWidth: 1366,
+        screenHeight: 768,
         stages: [1,2,3,4],
         textGap: 30,
     },
@@ -41,7 +41,8 @@ export const gameSettings = {
     },
     
     mainScreen:{
-        text: ["Ergenekon teste mein Text System","LOL"],
+        top: "Ergenekon",
+        text: [""],
         buttons: [
             {
                 label: "Start",
@@ -68,7 +69,8 @@ export const gameSettings = {
         width: 200,
         height: 80,
         x: 100,
-        y: 200,
+        y: 300,
+        textY: 300,
         gap: 100,
     },
 
@@ -85,7 +87,8 @@ export const gameSettings = {
     },
 
     gameOver:{
-        text: ["a","b"],
+        top: "Game Over!",
+        text: ["Bevor du leidest, besser du meidest.","– Friedrich Schiller, 2017"],
         buttons: [
             {
                 label: "Restart",
@@ -112,7 +115,9 @@ export const gameSettings = {
         width: 200,
         height: 80,
         x: 100,
-        y: 100,
+        y: 350,
+        textY: 500,
         gap: 100,
+        color: "red"
     },
 };

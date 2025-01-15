@@ -17,6 +17,7 @@ global.centerX = global.canvas.width / 2;
 global.centerY = global.canvas.height / 2;
 
 global.s = new Screen();
+global.sc = new Screen();
 global.allGameObjects = [];
 global.enemyCounter = 0;
 global.enemyAmount = 0;
@@ -25,8 +26,10 @@ global.enemy = gs.dirk;
 global.hp = gs.player.health;
 global.attackPatternCount = 0;
 global.gameloss = false;
-global.currentScreen = 0;
 global.isMouseClicked = false;
+global.currentScreen = 0;
+global.currentScreenValue = gs.mainScreen;
+
 
 
 
