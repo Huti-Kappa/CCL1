@@ -3,7 +3,7 @@ import { global } from "./global.js";
 export class Button {
     clickable = true;
     color = "black";
-    constructor(x, y, width, height, text, fontSize, fontFamily, backgroundcolor, onclick) {
+    constructor(x, y, width, height, text, fontSize, fontFamily, backgroundcolor, onclick,screenID) {
         this.x = x;
         this.y = y;
         this.height = height;
@@ -13,11 +13,12 @@ export class Button {
         this.fontFamily = fontFamily;
         this.backgroundcolor = backgroundcolor;
         this.onclick = onclick;
+        this.screenID = screenID;
     }
 
     draw() {
         this.color=this.backgroundcolor;
-        if(this.clickable==true){
+        if(global.currentScreen==this.screenID){
             if(this.click()==true){
                 this.color="grey";
         }

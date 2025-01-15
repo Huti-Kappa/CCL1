@@ -1,4 +1,5 @@
 import { global } from "./global.js";
+import { gameSettings as gs} from './settings.js';
 
 export const gameSettings = {
     dirk: {
@@ -41,6 +42,7 @@ export const gameSettings = {
     },
     
     mainScreen:{
+        screenID: 0,
         top: "Ergenekon",
         text: [""],
         buttons: [
@@ -87,20 +89,46 @@ export const gameSettings = {
     },
 
     gameOver:{
+        screenID: 2,
         top: "Game Over!",
         text: ["Bevor du leidest, besser du meidest.","– Friedrich Schiller, 2017"],
         buttons: [
             {
-                label: "Restart",
+                label: "Try Again!",
                 action: () => {
-                    console.log("Game Started!");
-                    global.currentScreen++;
+                    console.log("test");
+                    global.allGameObjects = [];
+                    global.enemyCounter = 0;
+                    global.enemyAmount = 0;
+                    global.hitCounter = 0;
+                    global.enemy = gs.dirk;
+                    global.hp = gs.player.health;
+                    global.attackPatternCount = 0;
+                    global.gameloss = false;
+                    global.isMouseClicked = false;
+                    global.currentScreen = 1;
+                    global.currentScreenValue = gs.mainScreen;
+                    global.gameloss=false;
+                    console.log("Restart!");
                 }
             },
             {
                 label: "Title Screen",
                 action: () => {
-                    console.log("Settings Opened!");
+                    console.log("Title Screen!");
+                    global.allGameObjects = [];
+                    global.enemyCounter = 0;
+                    global.enemyAmount = 0;
+                    global.hitCounter = 0;
+                    global.enemy = gs.dirk;
+                    global.hp = gs.player.health;
+                    global.attackPatternCount = 0;
+                    global.gameloss = false;
+                    global.isMouseClicked = false;
+                    global.currentScreen = 0;
+                    global.currentScreenValue = gs.mainScreen;
+                    global.gameloss=false;
+                    console.log("Restart!");
                 }
             },
             {

@@ -80,7 +80,8 @@ function setupScreen(s, screenConfig) {
                 screenConfig.size,  
                 screenConfig.font,  
                 "black",            
-                buttonConfig.action 
+                buttonConfig.action,
+                screenConfig.screenID
             )
         );
     }
