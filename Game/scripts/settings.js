@@ -110,6 +110,7 @@ export const gameSettings = {
                     global.currentScreenValue = gs.mainScreen;
                     global.gameloss=false;
                     console.log("Restart!");
+                    global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
                 }
             },
             {

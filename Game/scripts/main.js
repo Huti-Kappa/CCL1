@@ -17,6 +17,7 @@ function gameLoop(totalRunningTime) {
             global.currentScreen++;
             global.currentScreenValue = gs.gameOver;
             console.log("LOSS");
+            global.currentScreenButtons = global.sc;
             setupScreen(global.sc,global.currentScreenValue);
         }else{
             // Handle enemy creation with a fixed interval

@@ -29,6 +29,7 @@ global.gameloss = false;
 global.isMouseClicked = false;
 global.currentScreen = 0;
 global.currentScreenValue = gs.mainScreen;
+global.currentScreenButtons = global.s;
 
 
 
@@ -86,8 +87,8 @@ document.addEventListener('click', () => {
 });
 
 global.handleClickAction = function() {
-    for (const key in global.s.buttons) {
-        global.s.buttons[key].clickme();
+    for (const key in global.currentScreenButtons.buttons) {
+        global.currentScreenButtons.buttons[key].clickme();
     }
     console.log("Click action triggered at:", global.mouseX, global.mouseY);
 }
