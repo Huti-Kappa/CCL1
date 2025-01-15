@@ -50,11 +50,17 @@ global.checkStatus = function () {
 }
 
 global.resetStage = function () {
+    console.log("test");
     global.enemyCounter = 0;
     global.enemyAmount = 0;
     global.hitCounter = 0;
     global.allGameObjects = [];
-    global.attackPatternCount++;
+    if(global.attackPatternCount!=global.enemy.attackPatterns.length-1){
+        global.attackPatternCount++;
+    } else {
+        global.enemy = gs.gunther;
+        global.attackPatternCount = 0;
+    }
 }
 
 global.drawTextOnCanvas = function (text, x, y, font = "30px Arial", color = "black") {
@@ -65,26 +71,22 @@ global.drawTextOnCanvas = function (text, x, y, font = "30px Arial", color = "bl
     global.ctx.fillText(text, x, y);
 }
 
-// Update mouse position and check for click state
 document.addEventListener('mousemove', (e) => {
     const { left, top } = global.canvas.getBoundingClientRect();
     global.mouseX = e.clientX - left;
     global.mouseY = e.clientY - top;
 });
 
-// Handle click directly without a state variable
 document.addEventListener('click', () => {
     console.log("Mouse clicked!");
-    global.handleClickAction();  // Call a function directly when click happens
+    global.handleClickAction();
 });
 
-// Example function that gets called on click
 global.handleClickAction = function() {
     for (const key in global.s.buttons) {
         global.s.buttons[key].clickme();
     }
     console.log("Click action triggered at:", global.mouseX, global.mouseY);
-    // Perform your actions based on the click here
 }
 
 

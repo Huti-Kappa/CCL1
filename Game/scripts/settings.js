@@ -5,8 +5,20 @@ export const gameSettings = {
         name: "EnemyName",  
         health: 100,                 
         attackPatterns: [
+            [4,4,4,4,4,4,4,4,4]
+        ],
+        enemyCreationInterval: 500,
+        distanceX : 500,
+        distanceY : 500,
+        speedMultiplier: 0.7
+    },
+
+    gunther: {
+        name: "EnemyName",  
+        health: 100,                 
+        attackPatterns: [
             [1,3,2,4,1,2,1,3,2,3,2,4,1],
-            [1,2],
+            [1,2,3,3,3,3,3],
             [4,4,4,4,4,4,4,4,4]
         ],
         enemyCreationInterval: 500,

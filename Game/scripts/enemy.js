@@ -42,7 +42,7 @@ export class Enemy {
             this.posY = this.y - this.hitboxHeight / 2 + this.offsetY;
             global.ctx.fillStyle = "blue";
             if(this.color==true){
-                global.ctx.fillStyle = "white";
+                global.ctx.fillStyle = "transparent";
             }
             global.ctx.fillRect(
                 this.posX,

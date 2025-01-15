@@ -8,6 +8,7 @@ function gameLoop(totalRunningTime) {
     global.prevTotalRunningTime = totalRunningTime;
     global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
 
+    
     if(global.currentScreen==0){
         global.s.draw();
     }else {
@@ -40,6 +41,11 @@ function gameLoop(totalRunningTime) {
 
     requestAnimationFrame(gameLoop);
 }
+
+
+
+
+
 
 
 
