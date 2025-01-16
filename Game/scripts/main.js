@@ -5,7 +5,6 @@ import { Button } from "./button.js";
 import { Text } from "./text.js";
 import { State } from "./statemanager.js";
 
-let state = new State();
 
 function gameLoop(totalRunningTime) {
     global.deltaTime = (totalRunningTime - global.prevTotalRunningTime) / 1000; // Convert ms to seconds

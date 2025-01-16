@@ -1,5 +1,9 @@
 import { global } from "./global.js";
 
+const arrowImage = new Image();
+arrowImage.src = "../images/arrow.png";
+
+
 export class Enemy {
     x = global.canvas.width / 2;
     y = global.canvas.height / 2;

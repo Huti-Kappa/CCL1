@@ -55,7 +55,6 @@ global.handleEnemyCreation = function () {
 global.checkStatus = function () {
     if(global.hp==0){
         global.currentScreen = 2;
-        global.hp=3;
         console.log("FAIL")
     }
 }
