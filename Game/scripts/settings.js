@@ -8,6 +8,7 @@ export const gameSettings = {
         attackPatterns: [
             [4,4,4,4,4,4,4,4,4]
         ],
+        dialogue: ["asd"],
         enemyCreationInterval: 500,
         distanceX : 500,
         distanceY : 500,
