@@ -104,11 +104,9 @@ export const gameSettings = {
                     global.enemy = gs.dirk;
                     global.hp = gs.player.health;
                     global.attackPatternCount = 0;
-                    global.gameloss = false;
                     global.isMouseClicked = false;
                     global.currentScreen = 1;
                     global.currentScreenValue = gs.mainScreen;
-                    global.gameloss=false;
                     console.log("Restart!");
                     global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
                 }
@@ -124,11 +122,9 @@ export const gameSettings = {
                     global.enemy = gs.dirk;
                     global.hp = gs.player.health;
                     global.attackPatternCount = 0;
-                    global.gameloss = false;
                     global.isMouseClicked = false;
                     global.currentScreen = 0;
                     global.currentScreenValue = gs.mainScreen;
-                    global.gameloss=false;
                     console.log("Restart!");
                 }
             },

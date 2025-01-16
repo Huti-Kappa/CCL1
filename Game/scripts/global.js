@@ -1,7 +1,7 @@
 import { gameSettings as gs} from './settings.js';
 import { Enemy } from "./enemy.js";
 import { Screen } from "./screens.js";
-
+import { State } from "./statemanager.js";
 
 
 const global = {};
@@ -16,8 +16,12 @@ global.enemyCreationTime = 0;
 global.centerX = global.canvas.width / 2;
 global.centerY = global.canvas.height / 2;
 
-global.s = new Screen();
-global.sc = new Screen();
+
+global.mainScreen = new Screen();
+global.gameOver = new Screen();
+global.winScreen = new Screen();
+global.pauseScreen = new Screen();
+
 global.allGameObjects = [];
 global.enemyCounter = 0;
 global.enemyAmount = 0;
@@ -25,11 +29,13 @@ global.hitCounter = 0;
 global.enemy = gs.dirk;
 global.hp = gs.player.health;
 global.attackPatternCount = 0;
-global.gameloss = false;
 global.isMouseClicked = false;
+
 global.currentScreen = 0;
 global.currentScreenValue = gs.mainScreen;
 global.currentScreenButtons = global.s;
+
+global.state = new State();
 
 
 
@@ -48,7 +54,8 @@ global.handleEnemyCreation = function () {
 
 global.checkStatus = function () {
     if(global.hp==0){
-        global.gameloss=true;
+        global.currentScreen = 2;
+        global.hp=3;
         console.log("FAIL")
     }
 }
