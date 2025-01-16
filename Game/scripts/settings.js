@@ -2,7 +2,7 @@ import { global } from "./global.js";
 import { gameSettings as gs} from './settings.js';
 
 export const gameSettings = {
-    dirk: {
+    enemy1: {
         name: "EnemyName",  
         health: 100,                 
         attackPatterns: [
@@ -15,7 +15,7 @@ export const gameSettings = {
         speedMultiplier: 0.7
     },
 
-    gunther: {
+    enemy2: {
         name: "EnemyName",  
         health: 100,                 
         attackPatterns: [
@@ -28,6 +28,35 @@ export const gameSettings = {
         distanceY : 500,
         speedMultiplier: 0.7
     },
+    
+    enemy3: {
+        name: "EnemyName",  
+        health: 100,                 
+        attackPatterns: [
+            [1,3,2,4,1,2,1,3,2,3,2,4,1],
+            [1,2,3,3,3,3,3],
+            [4,4,4,4,4,4,4,4,4]
+        ],
+        enemyCreationInterval: 500,
+        distanceX : 500,
+        distanceY : 500,
+        speedMultiplier: 0.7
+    },
+    
+    enemy4: {
+        name: "EnemyName",  
+        health: 100,                 
+        attackPatterns: [
+            [1,3,2,4,1,2,1,3,2,3,2,4,1],
+            [1,2,3,3,3,3,3],
+            [4,4,4,4,4,4,4,4,4]
+        ],
+        enemyCreationInterval: 500,
+        distanceX : 500,
+        distanceY : 500,
+        speedMultiplier: 0.7
+    },
+    
 
     game: {
         screenWidth: 1366,

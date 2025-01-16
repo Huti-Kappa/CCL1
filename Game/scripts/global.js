@@ -23,17 +23,20 @@ global.winScreen = new Screen();
 global.pauseScreen = new Screen();
 
 global.allGameObjects = [];
-global.enemyCounter = 0;
-global.enemyAmount = 0;
 global.hitCounter = 0;
-global.enemy = gs.dirk;
 global.hp = gs.player.health;
 global.attackPatternCount = 0;
 global.isMouseClicked = false;
 
+global.enemyArray= [gs.enemy1,gs.enemy2,gs.enemy3,gs.enemy4];
+global.enemyCounter = 0;
+global.enemyAmount = 0;
+global.enemy = global.enemyArray[0];
+global.currentBoss = 0;
+
 global.currentScreen = 0;
 global.currentScreenValue = gs.mainScreen;
-global.currentScreenButtons = global.s;
+global.currentScreenButtons = global.mainScreen;
 
 global.state = new State();
 
@@ -68,7 +71,11 @@ global.resetStage = function () {
     if(global.attackPatternCount!=global.enemy.attackPatterns.length-1){
         global.attackPatternCount++;
     } else {
-        global.enemy = gs.gunther;
+        if(global.currentBoss==3){
+            console.log("YOU WON")
+        }
+        global.currentBoss++;
+        global.enemy = global.enemyArray[global.currentBoss];
         global.attackPatternCount = 0;
     }
 }
