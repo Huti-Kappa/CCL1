@@ -131,11 +131,12 @@ export const gameSettings = {
                     global.enemyCounter = 0;
                     global.enemyAmount = 0;
                     global.hitCounter = 0;
-                    global.enemy = gs.dirk;
+                    global.enemy = global.enemyArray[0];
                     global.hp = gs.player.health;
                     global.attackPatternCount = 0;
                     global.isMouseClicked = false;
                     global.currentScreen = 1;
+                    global.currentBoss = 0;
                     global.currentScreenValue = gs.mainScreen;
                     console.log("Restart!");
                     global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
@@ -149,11 +150,12 @@ export const gameSettings = {
                     global.enemyCounter = 0;
                     global.enemyAmount = 0;
                     global.hitCounter = 0;
-                    global.enemy = gs.dirk;
+                    global.enemy = global.enemyArray[0];
                     global.hp = gs.player.health;
                     global.attackPatternCount = 0;
                     global.isMouseClicked = false;
                     global.currentScreen = 0;
+                    global.currentBoss = 0;
                     global.currentScreenValue = gs.mainScreen;
                     console.log("Restart!");
                 }

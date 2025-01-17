@@ -1,14 +1,11 @@
 import { global } from "./global.js";
 
-const arrowImage = new Image();
-arrowImage.src = "../images/arrow.png";
-
 export class Enemy {
     x = global.canvas.width / 2;
     y = global.canvas.height / 2;
 
-    hitboxWidth = 10;
-    hitboxHeight = 10;
+    hitboxWidth = 20;
+    hitboxHeight = 20;
 
     colWidth = 50; //innerHitbox
     colHeight = 50;
