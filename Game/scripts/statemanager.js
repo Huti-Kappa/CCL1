@@ -11,6 +11,7 @@ export class State{
 
     setupGame(){}
 
+    setupBattle(){}
     
     setupScreen(s, screenConfig) {
         for (let key = 0; key < screenConfig.buttons.length; key++) {

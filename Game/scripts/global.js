@@ -2,7 +2,8 @@ import { gameSettings as gs} from './settings.js';
 import { Enemy } from "./enemy.js";
 import { Screen } from "./screens.js";
 import { State } from "./statemanager.js";
-
+import { Text } from "./text.js";
+import { SpriteRender } from "./spriteRenderer.js";
 
 const global = {};
 
@@ -40,9 +41,22 @@ global.currentScreenButtons = global.mainScreen;
 global.state = new State();
 global.gameMusic = document.getElementById('gameMusic');
 
-global.hitBox = new Image();
-global.hitBox.src = './images/hitbox.png';
 
+global.sp = new Text(-300,200,100,100,"Sets of Numbers",25,"Tiny5","white");
+
+
+global.nohit1 = new Image();
+global.nohit1.src = './images/nohit_1.png';
+global.nohit2 = new Image();
+global.nohit2.src = './images/nohit_2.png';
+global.nohit3 = new Image();
+global.nohit3.src = './images/nohit_3.png';
+global.nohit4 = new Image();
+global.nohit4.src = './images/nohit_4.png';
+
+global.try = new SpriteRender(100,100,40,40)
+global.try.loadImagesFromSpritesheet('./images/hit_1_sheet.png',4,1);
+global.try.switchCurrentSprites(0, 3);
 
 // Play the music when the game starts
 global.startGameMusic = function () {
@@ -91,13 +105,6 @@ global.resetStage = function () {
     global.enemy = global.enemyArray[global.currentBoss];
     global.enemyCounter = 0;
 
-}
-
-global.drawTextOnCanvas = function (text, x, y, font = "30px Arial", color = "black") {
-
-    global.ctx.font = font;
-    global.ctx.fillStyle = color;
-    global.ctx.fillText(text, x, y);
 }
 
 document.addEventListener('mousemove', (e) => {

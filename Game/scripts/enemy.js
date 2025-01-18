@@ -7,9 +7,9 @@ export class Enemy {
     hitboxWidth = 30;
     hitboxHeight = 30;
 
-    colWidth = 40; //innerHitbox
-    colHeight = 40;
-    hitboxAdd = 80; //outerHitbox
+    colWidth = 50; //innerHitbox
+    colHeight = 50;
+    hitboxAdd = 70; //outerHitbox
 
     alreadyHit = false;
     offsetX = 0;
