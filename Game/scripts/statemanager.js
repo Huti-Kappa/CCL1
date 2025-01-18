@@ -66,6 +66,7 @@ export class State{
                 global.mainScreen.draw();
                 break;
             case 2:
+                global.pauseGameMusic();
                 global.currentScreenValue = gs.gameOver;
                 global.currentScreenButtons = global.gameOver;
                 global.state.setupScreen(global.gameOver,global.currentScreenValue);

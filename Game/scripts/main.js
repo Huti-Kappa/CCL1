@@ -1,9 +1,4 @@
 import { global } from "./global.js";
-import { Screen } from "./screens.js";
-import { gameSettings as gs} from './settings.js';
-import { Button } from "./button.js";
-import { Text } from "./text.js";
-import { State } from "./statemanager.js";
 
 
 function gameLoop(totalRunningTime) {
@@ -15,10 +10,13 @@ function gameLoop(totalRunningTime) {
     if(global.currentScreen!=1){
         global.state.screenStateManager();
     }else {
-        global.ctx.fillStyle = "white";
-        global.ctx.fillRect(global.canvas.width/2 -100,global.canvas.height/2 -100, 200,200);
-        global.ctx.fillStyle = "red";
-        global.ctx.fillRect(global.canvas.width/2 -40,global.canvas.height/2 -40, 80,80);
+        global.ctx.drawImage(
+            global.hitBox,
+            global.canvas.width/2 -100,
+            global.canvas.height/2 -100, 
+            200,
+            200
+        );
 
         // Handle enemy creation with a fixed interval
         global.handleEnemyCreation();
@@ -68,6 +66,10 @@ function controlls(event) {
         }
     }
 }
+
+
+
+// Example: Starting the music when the game starts
 
 
 

@@ -4,25 +4,43 @@ export class Enemy {
     x = global.canvas.width / 2;
     y = global.canvas.height / 2;
 
-    hitboxWidth = 20;
-    hitboxHeight = 20;
+    hitboxWidth = 30;
+    hitboxHeight = 30;
 
-    colWidth = 50; //innerHitbox
-    colHeight = 50;
-    hitboxAdd = 50; //outerHitbox
+    colWidth = 40; //innerHitbox
+    colHeight = 40;
+    hitboxAdd = 80; //outerHitbox
 
     alreadyHit = false;
     offsetX = 0;
     offsetY = 0;
     posX = 0;
     posY = 0;
-    color = false;
+    invisible = false;
 
+    // Add an image variable
+    enemyImage = new Image();
+    
     constructor(direction) {
         this.direction = direction;
         // Calculate initial offsets
         this.offsetX = (direction === 1) ? -global.enemy.distanceX : (direction === 3) ? global.enemy.distanceX : 0;
         this.offsetY = (direction === 4) ? global.enemy.distanceY : (direction === 2) ? -global.enemy.distanceY : 0;
+        
+        switch (direction) {
+            case 1:
+                this.enemyImage.src = './images/arrow_1.png';
+                break;
+            case 2:
+                this.enemyImage.src = './images/arrow_2.png';
+                break;
+            case 3:
+                this.enemyImage.src = './images/arrow_3.png';
+                break;
+            case 4:
+                this.enemyImage.src = './images/arrow_4.png';
+                break;
+        }
     }
 
     //Calculate X Y Coordinates for movement
@@ -40,16 +58,16 @@ export class Enemy {
         if (this.offsetX || this.offsetY) {
             this.posX = this.x - this.hitboxWidth / 2 + this.offsetX;
             this.posY = this.y - this.hitboxHeight / 2 + this.offsetY;
-            global.ctx.fillStyle = "blue";
-            if(this.color==true){
-                global.ctx.fillStyle = "transparent";
+            if(!this.invisible){
+                global.ctx.drawImage(
+                    this.enemyImage,
+                    this.posX,
+                    this.posY,
+                    this.hitboxWidth,
+                    this.hitboxHeight
+                );
+
             }
-            global.ctx.fillRect(
-                this.posX,
-                this.posY,
-                this.hitboxWidth,
-                this.hitboxHeight
-            );
         }
     }
 
@@ -90,7 +108,7 @@ export class Enemy {
             global.hitCounter++;
         }
         this.alreadyHit = true;
-        this.color = true;
+        this.invisible = true;
     }
 
 }
