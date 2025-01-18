@@ -4,6 +4,7 @@ import { Screen } from "./screens.js";
 import { State } from "./statemanager.js";
 import { Text } from "./text.js";
 import { SpriteRender } from "./spriteRenderer.js";
+import { Center } from "./center.js";
 
 const global = {};
 
@@ -45,18 +46,7 @@ global.gameMusic = document.getElementById('gameMusic');
 global.sp = new Text(-300,200,100,100,"Sets of Numbers",25,"Tiny5","white");
 
 
-global.nohit1 = new Image();
-global.nohit1.src = './images/nohit_1.png';
-global.nohit2 = new Image();
-global.nohit2.src = './images/nohit_2.png';
-global.nohit3 = new Image();
-global.nohit3.src = './images/nohit_3.png';
-global.nohit4 = new Image();
-global.nohit4.src = './images/nohit_4.png';
-
-global.try = new SpriteRender(100,100,40,40)
-global.try.loadImagesFromSpritesheet('./images/hit_1_sheet.png',4,1);
-global.try.switchCurrentSprites(0, 3);
+global.center = new Center();
 
 // Play the music when the game starts
 global.startGameMusic = function () {

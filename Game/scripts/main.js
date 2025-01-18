@@ -9,10 +9,6 @@ function gameLoop(totalRunningTime) {
     if(global.currentScreen!=1){
         global.state.screenStateManager();
     }else {
-        global.ctx.drawImage(global.nohit1,global.canvas.width/2 -100,global.canvas.height/2-20, 40,40);
-        global.ctx.drawImage(global.nohit2,global.canvas.width/2 -20,global.canvas.height/2-100, 40,40);
-        global.ctx.drawImage(global.nohit3,global.canvas.width/2 +60,global.canvas.height/2-20, 40,40);
-        global.ctx.drawImage(global.nohit4,global.canvas.width/2 -20,global.canvas.height/2+60, 40,40);
 
         // Draw the sprite
 
@@ -38,8 +34,7 @@ function gameLoop(totalRunningTime) {
 
         
     }
-    global.try.draw();
-    
+    global.center.update();
     global.checkStatus();
     requestAnimationFrame(gameLoop);
 }
