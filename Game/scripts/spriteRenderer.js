@@ -33,8 +33,14 @@ export class SpriteRender {
         this.previousY = this.y;
     }
 
-    draw = function () {
+    animate = function () {
         let sprite = this.getNextSprite();
+        console.log(sprite);
+        global.ctx.drawImage(sprite, this.x, this.y, this.width, this.height);
+    };
+
+    draw = function () {
+        let sprite = this.animationData.animationSprites[0];
         console.log(sprite);
         global.ctx.drawImage(sprite, this.x, this.y, this.width, this.height);
     };
@@ -124,4 +130,5 @@ export class SpriteRender {
         this.animationData.firstSpriteIndex = firstSpriteIndex;
         this.animationData.lastSpriteIndex = lastSpriteIndex;
     }
+    
 }

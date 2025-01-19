@@ -11,6 +11,9 @@ function gameLoop(totalRunningTime) {
     }else {
 
         // Draw the sprite
+        //global.center.draw();
+        global.center.draw();
+        
 
         // Handle enemy creation with a fixed interval
         global.handleEnemyCreation();
@@ -30,11 +33,7 @@ function gameLoop(totalRunningTime) {
             }
             
         }
-
-
-        
     }
-    global.center.update();
     global.checkStatus();
     requestAnimationFrame(gameLoop);
 }
@@ -47,7 +46,9 @@ function controlls(event) {
     const intendedDirection = directionMap[event.key];
 
     if (intendedDirection !== undefined) {
+        global.hitStart();
         Object.values(global.allGameObjects).forEach(gameObject => {
+            global.center.animate();
             if (gameObject.collisionDetection() === 1 && gameObject.getDir() === intendedDirection) {
                 console.log("HIT");
                 gameObject.destroyBullet();
