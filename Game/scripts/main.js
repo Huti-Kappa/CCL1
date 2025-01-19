@@ -46,7 +46,7 @@ function controlls(event) {
     const intendedDirection = directionMap[event.key];
 
     if (intendedDirection !== undefined) {
-        global.hitStart();
+        global.hit.hitStart();
         Object.values(global.allGameObjects).forEach(gameObject => {
             global.center.animate();
             if (gameObject.collisionDetection() === 1 && gameObject.getDir() === intendedDirection) {

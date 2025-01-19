@@ -5,6 +5,7 @@ import { State } from "./statemanager.js";
 import { Text } from "./text.js";
 import { SpriteRender } from "./spriteRenderer.js";
 import { Center } from "./center.js";
+import { Music } from "./music.js";
 
 const global = {};
 
@@ -40,31 +41,13 @@ global.currentScreenValue = gs.mainScreen;
 global.currentScreenButtons = global.mainScreen;
 
 global.state = new State();
-global.gameMusic = document.getElementById('gameMusic');
-global.hit = document.getElementById('hit');
 
 
 global.sp = new Text(-300,200,100,100,"Sets of Numbers",25,"Tiny5","white");
-
-
 global.center = new Center();
 
-// Play the music when the game starts
-global.startGameMusic = function () {
-  global.gameMusic.play();
-}
-// Play the music when the game starts
-global.hitStart = function () {
-    global.hit.currentTime = 0
-  global.hit.play();
-}
-
-// Pause the music when the game is paused
-global.pauseGameMusic = function () {
-    global.gameMusic.pause();
-    global.gameMusic.currentTime = 0
-}
-
+global.gameMusic = new Music("gameMusic");
+global.hit = new Music("hit");
 
 
 

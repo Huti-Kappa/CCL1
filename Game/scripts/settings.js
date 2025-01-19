@@ -78,21 +78,21 @@ export const gameSettings = {
                 action: () => {
                     console.log("Game Started!");
                     global.currentScreen++;
-                    global.startGameMusic();
+                    global.gameMusic.startMusic();
                 }
             },
             {
                 label: "Settings",
                 action: () => {
                     console.log("Settings Opened!");
-                    global.startGameMusic();
+                    global.gameMusic.startMusic();
                 }
             },
             {
                 label: "Credits",
                 action: () => {
                     console.log("Credits Displayed!");
-                    global.pauseGameMusic();
+                    global.gameMusic.stopMusic();
                 }
             },
         ],
@@ -139,7 +139,7 @@ export const gameSettings = {
                     global.currentScreenValue = gs.mainScreen;
                     console.log("Restart!");
                     global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
-                    global.startGameMusic();
+                    global.gameMusic.startMusic();
                 }
             },
             {
