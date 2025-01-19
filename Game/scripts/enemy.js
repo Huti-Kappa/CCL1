@@ -8,8 +8,8 @@ export class Enemy {
     hitboxWidth = 30;
     hitboxHeight = 30;
 
-    colWidth = 50; //innerHitbox
-    colHeight = 50;
+    colWidth = 60; //innerHitbox
+    colHeight = 60;
     hitboxAdd = 70; //outerHitbox
 
     alreadyHit = false;
@@ -76,7 +76,7 @@ export class Enemy {
     //Returns 2 if Inner Death Hitbox gets hit
     collisionDetection() {
         if(this.alreadyHit==false){
-            const canvasCenter = { x: global.canvas.width / 2, y: global.canvas.height / 2 };
+            const canvasCenter = { x: global.canvas.width / 2-this.hitboxWidth/2, y: global.canvas.height / 2-this.hitboxHeight/2 };
 
             const checkCollision = (pos, center, size, add) => {
                 const outerMin = center - size - add;

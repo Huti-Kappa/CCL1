@@ -44,7 +44,7 @@ global.currentScreenButtons = global.mainScreen;
 
 global.state = new State();
 
-global.boss = new Boss(global.canvas.width/2-140,100,250,250,'./images/sprite_sheet.png',4,1,0,3,global.enemy.dialogue);
+global.boss = new Boss(global.canvas.width/2-140,100,250,250,'./images/sprite_sheet.png',4,1,0,3,global.enemy.dialogue,global.enemy.dialogueIntervall);
 
 
 
