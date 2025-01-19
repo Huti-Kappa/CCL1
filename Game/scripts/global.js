@@ -3,9 +3,10 @@ import { Enemy } from "./enemy.js";
 import { Screen } from "./screens.js";
 import { State } from "./statemanager.js";
 import { Text } from "./text.js";
-import { SpriteRender } from "./spriteRenderer.js";
 import { Center } from "./center.js";
 import { Music } from "./music.js";
+import { Boss } from "./bossRenderer.js";
+import { SpriteRender } from './spriteRenderer.js';
 
 const global = {};
 
@@ -24,6 +25,7 @@ global.mainScreen = new Screen();
 global.gameOver = new Screen();
 global.winScreen = new Screen();
 global.pauseScreen = new Screen();
+global.explanation = new Screen();
 
 global.allGameObjects = [];
 global.hitCounter = 0;
@@ -42,13 +44,21 @@ global.currentScreenButtons = global.mainScreen;
 
 global.state = new State();
 
+global.boss = new Boss(global.canvas.width/2-140,100,250,250,'./images/sprite_sheet.png',4,1,0,3,global.enemy.dialogue);
 
-global.sp = new Text(-300,200,100,100,"Sets of Numbers",25,"Tiny5","white");
+
+
+
+
+//global.sp = new Text(-300,200,100,100,"Sets of Numbers",25,"Tiny5","white");
 global.center = new Center();
+
+
 
 global.gameMusic = new Music("gameMusic");
 global.hit = new Music("hit");
-
+global.miss = new Music("miss");
+global.voice = new Music("voice");
 
 
 global.handleEnemyCreation = function () {
@@ -104,5 +114,19 @@ global.handleClickAction = function() {
     console.log("Click action triggered at:", global.mouseX, global.mouseY);
 }
 
-
+global.setupCenter = function(){
+    global.left = new SpriteRender(global.canvas.width/2 -100,global.canvas.height/2-20,40,40);
+    global.top = new SpriteRender(global.canvas.width/2 -20,global.canvas.height/2-100,40,40);
+    global.right = new SpriteRender(global.canvas.width/2 +60,global.canvas.height/2-20,40,40);
+    global.bottom = new SpriteRender(global.canvas.width/2 -20,global.canvas.height/2+60,40,40);
+    global.left.loadImagesFromSpritesheet('./images/hit_1_sheet.png',4,1);
+    global.left.switchCurrentSprites(0, 3);
+    global.top.loadImagesFromSpritesheet('./images/hit_2_sheet.png',4,1);
+    global.top.switchCurrentSprites(0, 3);
+    global.right.loadImagesFromSpritesheet('./images/hit_3_sheet.png',4,1);
+    global.right.switchCurrentSprites(0, 3);
+    global.bottom.loadImagesFromSpritesheet('./images/hit_4_sheet.png',4,1);
+    global.bottom.switchCurrentSprites(0, 3);
+}
+global.setupCenter();
 export { global }

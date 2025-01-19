@@ -12,7 +12,7 @@ export class Screen {
         global.ctx.fillStyle ="black";
         global.ctx.fillRect(0,0,global.canvas.width,global.canvas.height);
         for (const key in this.texts) {
-            this.texts[key].draw(10);
+            this.texts[key].draw(15);
         }
         for (const key in this.buttons) {
             this.buttons[key].draw();

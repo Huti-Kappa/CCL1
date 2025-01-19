@@ -8,25 +8,32 @@ export class Center{
     bottom = new SpriteRender(global.canvas.width/2 -20,global.canvas.height/2+60,40,40);
     constructor(){
         this.left.loadImagesFromSpritesheet('./images/hit_1_sheet.png',4,1);
-        this.left.switchCurrentSprites(0, 3);
+        this.left.switchCurrentSprites(0, 0);
         this.top.loadImagesFromSpritesheet('./images/hit_2_sheet.png',4,1);
-        this.top.switchCurrentSprites(0, 3);
+        this.top.switchCurrentSprites(0, 0);
         this.right.loadImagesFromSpritesheet('./images/hit_3_sheet.png',4,1);
-        this.right.switchCurrentSprites(0, 3);
+        this.right.switchCurrentSprites(0, 0);
         this.bottom.loadImagesFromSpritesheet('./images/hit_4_sheet.png',4,1);
-        this.bottom.switchCurrentSprites(0, 3);
+        this.bottom.switchCurrentSprites(0, 0);
     }
-    animate(){
+    startAnimation(){
+        this.left.startAnimationOnce();
+        this.top.startAnimationOnce();
+        this.right.startAnimationOnce();
+        this.bottom.startAnimationOnce();
+   
+    }
+
+    draw(){
         this.left.animate();
         this.top.animate();
         this.right.animate();
         this.bottom.animate();
     }
-    draw(){
-        this.left.draw();
-        this.top.draw();
-        this.right.draw();
-        this.bottom.draw();
+
+    active(){
+        return this.bottom.active;
+        
     }
 
 

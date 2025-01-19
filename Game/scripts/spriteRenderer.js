@@ -12,7 +12,7 @@ export class SpriteRender {
 
     animationData = {
         "animationSprites": [],
-        "timePerSprite": 0.09,
+        "timePerSprite": 0.05,
         "currentSpriteElapsedTime": 0,
         "firstSpriteIndex": 0,
         "lastSpriteIndex": 0,
@@ -35,13 +35,11 @@ export class SpriteRender {
 
     animate = function () {
         let sprite = this.getNextSprite();
-        console.log(sprite);
         global.ctx.drawImage(sprite, this.x, this.y, this.width, this.height);
     };
 
     draw = function () {
         let sprite = this.animationData.animationSprites[0];
-        console.log(sprite);
         global.ctx.drawImage(sprite, this.x, this.y, this.width, this.height);
     };
 
@@ -130,5 +128,40 @@ export class SpriteRender {
         this.animationData.firstSpriteIndex = firstSpriteIndex;
         this.animationData.lastSpriteIndex = lastSpriteIndex;
     }
+
+    animateOnce = function () {
+        // Increment the elapsed time for the current sprite
+        this.animationData.currentSpriteElapsedTime += global.deltaTime;
+    
+        // Check if the elapsed time exceeds the time per sprite
+        if (this.animationData.currentSpriteElapsedTime >= this.animationData.timePerSprite) {
+            this.animationData.currentSpriteIndex++;
+            this.animationData.currentSpriteElapsedTime = 0;
+    
+            // Check if we've reached the end of the animation sequence
+            if (this.animationData.currentSpriteIndex > this.animationData.lastSpriteIndex) {
+                // Animation complete
+                this.active = false; // Mark animation as inactive
+                return false; // Animation finished
+            }
+        }
+    
+        // Draw the current sprite
+        const sprite = this.animationData.animationSprites[this.animationData.currentSpriteIndex];
+        global.ctx.drawImage(sprite, this.x, this.y, this.width, this.height);
+        return true; // Animation still running
+    };
+    
+    startAnimationOnce = function () {
+        this.active = true; // Activate animation
+        this.animationData.currentSpriteIndex = this.animationData.firstSpriteIndex; // Reset to the first frame
+        this.animationData.currentSpriteElapsedTime = 0; // Reset elapsed time
+    };
+
+    getActive = function() {
+        return this.active;
+    }
+    
+    
     
 }

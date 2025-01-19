@@ -1,4 +1,5 @@
 import { global } from "./global.js";
+import { Music } from "./music.js";
 
 export class Enemy {
     x = global.canvas.width / 2;
@@ -101,11 +102,16 @@ export class Enemy {
         return 0;
     }
 
-
-
-    destroyBullet(){
-        if( this.alreadyHit==false){
+    destroyBullet(val){
+        if( this.alreadyHit===false){
             global.hitCounter++;
+            if(val===1){
+                
+                global.hit.hitStart();
+            }else{
+                global.miss.hitStart();
+            }
+
         }
         this.alreadyHit = true;
         this.invisible = true;

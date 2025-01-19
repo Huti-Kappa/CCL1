@@ -5,20 +5,15 @@ function gameLoop(totalRunningTime) {
     global.prevTotalRunningTime = totalRunningTime;
     global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
 
-    
-    if(global.currentScreen!=1){
+    if (global.currentScreen != 1) {
         global.state.screenStateManager();
-    }else {
-
-        // Draw the sprite
-        //global.center.draw();
+    } else {
+        global.boss.draw();
+        global.boss.talk();
         global.center.draw();
-        
-
-        // Handle enemy creation with a fixed interval
         global.handleEnemyCreation();
-        
-        if(global.hitCounter==global.enemyAmount){
+
+        if (global.hitCounter == global.enemyAmount) {
             global.resetStage();
         }
 
@@ -26,37 +21,67 @@ function gameLoop(totalRunningTime) {
         for (const key in global.allGameObjects) {
             global.allGameObjects[key].update();
             global.allGameObjects[key].draw();
-            if(global.allGameObjects[key].collisionDetection()==2){
-                global.allGameObjects[key].destroyBullet();
+            if (global.allGameObjects[key].collisionDetection() == 2) {
+                //global.miss.hitStart();
+                global.allGameObjects[key].destroyBullet(2);
                 global.hp--;
-                console.log("Damage")
+                console.log("Damage");
             }
-            
         }
+
+        // Run animation if active
+        animateDirections();
     }
+    //global.sp.draw(50);
     global.checkStatus();
     requestAnimationFrame(gameLoop);
 }
 
 
+function animateDirections() {
+    const directions = [global.left, global.right, global.top, global.bottom];
 
+    directions.forEach(direction => {
+        if (direction.active) {
+            direction.active = direction.animateOnce();
+        }
+    });
+}
 
 function controlls(event) {
-    const directionMap = { w: 2, a: 1, s: 4, d: 3 };
-    const intendedDirection = directionMap[event.key];
+    const directionMap = {
+        w: { direction: 2, animation: global.top },
+        a: { direction: 1, animation: global.left },
+        s: { direction: 4, animation: global.bottom },
+        d: { direction: 3, animation: global.right }
+    };
 
-    if (intendedDirection !== undefined) {
-        global.hit.hitStart();
-        Object.values(global.allGameObjects).forEach(gameObject => {
-            global.center.animate();
-            if (gameObject.collisionDetection() === 1 && gameObject.getDir() === intendedDirection) {
+    const input = directionMap[event.key];
+    if (input) {
+        input.animation.startAnimationOnce();
+        let hitDetected = false;
+
+        global.allGameObjects.forEach(gameObject => {
+            if (gameObject.collisionDetection() === 1 && gameObject.getDir() === input.direction) {
+                // Spieler hat ein Ziel getroffen
+                hitDetected = true;
                 console.log("HIT");
-                gameObject.destroyBullet();
-                global.try.switchCurrentSprites(0, 0);
+                gameObject.destroyBullet(1);
             }
         });
+
+        // Wenn kein Treffer erfolgt, wird ein Leben abgezogen
+        if (!hitDetected) {
+            global.hp--;
+            global.miss.hitStart();
+            console.log("Leben abgezogen");
+        }
     }
 }
+
+
+
+
 
 requestAnimationFrame(gameLoop);
 global.state.setupScreen(global.mainScreen,global.currentScreenValue);
