@@ -28,16 +28,18 @@ export class Boss {
     talk() {
         // Update the accumulator with deltaTime
         this.timeAccumulator += global.deltaTime;
-
         // Check if the state is within valid range
         if (this.state < this.speeches.length) {
+            
             const currentSpeech = this.speeches[this.state];
             currentSpeech.draw(25);
-
+            global.voice.startMusic();
+            this.sprite.switchCurrentSprites(0,5);
             // Check if the current speech is fully rendered
             if (currentSpeech.p >= currentSpeech.text.length) {
                 const delay = this.delays[this.state] || 1000; // Use custom delay or default to 1000ms
-
+                global.voice.stopMusic();
+                this.sprite.switchCurrentSprites(6, 12);
                 // If the delay has passed, move to the next speech
                 if (this.timeAccumulator > delay) {
                     this.state++; // Move to the next speech
@@ -50,4 +52,6 @@ export class Boss {
     switchSprites(start, end) {
         this.sprite.switchCurrentSprites(start, end);
     }
+
+
 }

@@ -18,4 +18,8 @@ export class Music{
         this.music.currentTime = 0
     }
 
+    setMusic = function (musicHtmlID){
+        this.music = document.getElementById(musicHtmlID);
+    }
+
 } 

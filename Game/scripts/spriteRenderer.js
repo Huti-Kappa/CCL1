@@ -12,7 +12,7 @@ export class SpriteRender {
 
     animationData = {
         "animationSprites": [],
-        "timePerSprite": 0.05,
+        "timePerSprite": 0.06,
         "currentSpriteElapsedTime": 0,
         "firstSpriteIndex": 0,
         "lastSpriteIndex": 0,

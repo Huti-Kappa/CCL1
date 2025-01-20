@@ -34,6 +34,7 @@ global.hp = gs.player.health;
 global.isMouseClicked = false;
 
 global.enemyArray= [gs.enemy1,gs.enemy2,gs.enemy3,gs.enemy4];
+global.musicArray= ["joni","gameMusic","vayvay"];
 global.enemyCounter = 0;
 global.enemyAmount = 0;
 global.enemy = global.enemyArray[0];
@@ -45,7 +46,8 @@ global.currentScreenButtons = global.mainScreen;
 
 global.state = new State();
 
-global.boss = new Boss(global.canvas.width/2-160,50,250,250,'./images/sprite_sheet.png',4,1,0,3,global.enemy.dialogue,global.enemy.dialogueIntervall);
+global.boss = new Boss(global.canvas.width/2-120,50,250,250,'./images/sprite.png',12,1,0,5,global.enemy.dialogue,global.enemy.dialogueIntervall);
+//global.boss = new Boss(global.canvas.width/2-160,50,250,250,'./images/sprite.png',6,1,0,3,global.enemy.dialogue,global.enemy.dialogueIntervall);
 
 
 
@@ -59,7 +61,7 @@ global.centerimg.src = './images/hitbox.png';
 global.pillar = new Image();
 global.pillar.src = './images/pillar.png';
 
-global.gameMusic = new Music("gameMusic");
+global.gameMusic = new Music("joni");
 global.hit = new Music("hit");
 global.miss = new Music("miss");
 global.voice = new Music("voice");
@@ -94,7 +96,9 @@ global.resetStage = function () {
     if(global.currentBoss==3){
         console.log("YOU WON")
     }
+    console.log(this.currentBoss);
     global.currentBoss++;
+    global.gameMusic.stopMusic();
     global.currentScreen=6;
     global.enemy = global.enemyArray[global.currentBoss];
     global.enemyCounter = 0;
