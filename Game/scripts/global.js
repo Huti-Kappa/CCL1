@@ -26,6 +26,7 @@ global.gameOver = new Screen();
 global.winScreen = new Screen();
 global.pauseScreen = new Screen();
 global.explanation = new Screen();
+global.win = new Screen();
 
 global.allGameObjects = [];
 global.hitCounter = 0;
@@ -44,7 +45,7 @@ global.currentScreenButtons = global.mainScreen;
 
 global.state = new State();
 
-global.boss = new Boss(global.canvas.width/2-140,100,250,250,'./images/sprite_sheet.png',4,1,0,3,global.enemy.dialogue,global.enemy.dialogueIntervall);
+global.boss = new Boss(global.canvas.width/2-160,50,250,250,'./images/sprite_sheet.png',4,1,0,3,global.enemy.dialogue,global.enemy.dialogueIntervall);
 
 
 
@@ -53,7 +54,10 @@ global.boss = new Boss(global.canvas.width/2-140,100,250,250,'./images/sprite_sh
 //global.sp = new Text(-300,200,100,100,"Sets of Numbers",25,"Tiny5","white");
 global.center = new Center();
 
-
+global.centerimg = new Image();
+global.centerimg.src = './images/hitbox.png';
+global.pillar = new Image();
+global.pillar.src = './images/pillar.png';
 
 global.gameMusic = new Music("gameMusic");
 global.hit = new Music("hit");
@@ -91,6 +95,7 @@ global.resetStage = function () {
         console.log("YOU WON")
     }
     global.currentBoss++;
+    global.currentScreen=6;
     global.enemy = global.enemyArray[global.currentBoss];
     global.enemyCounter = 0;
 

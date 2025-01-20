@@ -95,6 +95,14 @@ export class State{
                 global.state.setupScreen(global.explanation,global.currentScreenValue);
                 global.currentScreenButtons.draw();
                 break;
+            case 6:
+                    global.gameMusic.stopMusic();
+                    global.hit.stopMusic();
+                    global.currentScreenValue = gs.win;
+                    global.currentScreenButtons = global.win;
+                    global.state.setupScreen(global.win,global.currentScreenValue);
+                    global.currentScreenButtons.draw();
+                    break;
             default:
                 // Handle other cases or default behavior
                 break;

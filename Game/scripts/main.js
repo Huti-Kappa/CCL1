@@ -10,6 +10,8 @@ function gameLoop(totalRunningTime) {
     } else {
         global.boss.draw();
         global.boss.talk();
+        global.ctx.drawImage(global.centerimg,global.centerX-200/2,global.centerY-200/2,200,200);
+        global.ctx.drawImage(global.pillar,0,0,global.canvas.width,global.canvas.height);
         global.center.draw();
         global.handleEnemyCreation();
 
