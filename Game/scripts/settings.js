@@ -14,7 +14,7 @@ export const gameSettings = {
             ["Let's see if you can get past me."],
             [""]
           ],
-        dialogueIntervall: [2,3,80,2,100],
+        dialogueIntervall: [2,3,80,2,300],
         enemyCreationInterval: 500,
         distanceX : 500,
         distanceY : 500,

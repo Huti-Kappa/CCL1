@@ -8,6 +8,8 @@ function gameLoop(totalRunningTime) {
     if (global.currentScreen != 1) {
         global.state.screenStateManager();
     } else {
+        bar(120,700,300,10);
+        healthBar(global.canvas.width-420,700,300,10);
         global.boss.draw();
         global.boss.talk();
         global.ctx.drawImage(global.centerimg,global.centerX-200/2,global.centerY-200/2,200,200);
@@ -81,6 +83,21 @@ function controlls(event) {
     }
 }
 
+function bar(x,y,width,height){
+    global.ctx.fillStyle = "grey";
+    global.ctx.fillRect(x,y,global.enemy.attackPatterns.length,height); // Hier "fillRect" statt "drawRect"
+    console.log(global.enemy.attackPatterns.length);
+    global.ctx.fillStyle = "white";
+    global.ctx.fillRect(x,y,global.enemy.attackPatterns.length-global.enemyCounter,height); // Hier "fillRect" statt "drawRect"
+}
+
+function healthBar(x,y,width,height){
+    global.ctx.fillStyle = "grey";
+    global.ctx.fillRect(x,y,global.enemy.attackPatterns.length,height); // Hier "fillRect" statt "drawRect"
+    console.log(global.enemy.attackPatterns.length);
+    global.ctx.fillStyle = "red";
+    global.ctx.fillRect(x,y,global.enemy.attackPatterns.length-global.enemyCounter,height); // Hier "fillRect" statt "drawRect"
+}
 
 
 

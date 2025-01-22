@@ -2,7 +2,6 @@ import { gameSettings as gs} from './settings.js';
 import { Enemy } from "./enemy.js";
 import { Screen } from "./screens.js";
 import { State } from "./statemanager.js";
-import { Text } from "./text.js";
 import { Center } from "./center.js";
 import { Music } from "./music.js";
 import { Boss } from "./bossRenderer.js";
