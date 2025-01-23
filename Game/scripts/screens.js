@@ -10,7 +10,6 @@ export class Screen {
 
     draw(){
         global.ctx.fillStyle ="black";
-        global.ctx.fillRect(0,0,global.canvas.width,global.canvas.height);
         for (const key in this.texts) {
             this.texts[key].draw(15);
         }

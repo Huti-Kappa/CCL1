@@ -24,7 +24,7 @@ export class State{
                     buttonConfig.label, 
                     screenConfig.size,  
                     screenConfig.font,  
-                    "black",            
+                    "rgba(0, 0, 0, 0.2)",            
                     buttonConfig.action,
                     screenConfig.screenID
                 )
@@ -75,11 +75,17 @@ export class State{
     screenStateManager() {
         switch (global.currentScreen) {
             case 0:
+                const bg = new Image();
+                bg.src = "./images/bg.png"
+                global.ctx.drawImage(bg,0,0,global.canvas.width,global.canvas.height);
                 global.currentScreenValue = gs.mainScreen;
                 global.currentScreenButtons = global.mainScreen;
                 global.mainScreen.draw();
                 break;
             case 2:
+                const go = new Image();
+                go.src = "./images/gameover.png"
+                global.ctx.drawImage(go,0,0,global.canvas.width,global.canvas.height);
                 global.gameMusic.stopMusic();
                 global.voice.stopMusic();
                 global.hit.stopMusic();
@@ -90,6 +96,9 @@ export class State{
                 global.currentScreenButtons.draw();
                 break;
             case 5:
+                const bs = new Image();
+                bs.src = "./images/backstory.png"
+                global.ctx.drawImage(bs,global.canvas.width/4,50,global.canvas.width/2,global.canvas.height/2);
                 global.gameMusic.stopMusic();
                 global.voice.stopMusic();
                 global.hit.stopMusic();
