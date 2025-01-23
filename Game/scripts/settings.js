@@ -113,10 +113,11 @@ export const gameSettings = {
                 }
             },
             {
-                label: "Credits",
+                label: "Play Music",
                 action: () => {
                     console.log("Credits Displayed!");
                     global.gameMusic.stopMusic();
+                    global.bg.startMusic();
                 }
             },
         ],
@@ -291,6 +292,7 @@ export const gameSettings = {
 
                 console.log("Game Started!");
                 global.currentScreen=1;
+                global.bg.stopMusic();
                 global.gameMusic.startMusic();
             }
         },],

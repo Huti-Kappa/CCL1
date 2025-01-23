@@ -67,6 +67,7 @@ global.gameMusic = new Music("joni",0.8);
 global.hit = new Music("hit",0.5);
 global.miss = new Music("miss",0.5);
 global.voice = new Music("voice",0.2);
+global.bg = new Music("bgmusic",0.2);
 
 
 global.handleEnemyCreation = function () {

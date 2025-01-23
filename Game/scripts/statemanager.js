@@ -107,6 +107,7 @@ export class State{
                 global.currentScreenButtons = global.explanation;
                 global.state.setupScreen(global.explanation,global.currentScreenValue);
                 global.currentScreenButtons.draw();
+                global.bg.startMusic();
                 break;
             case 6:
                     global.gameMusic.setMusic(global.musicArray[global.currentBoss]);
