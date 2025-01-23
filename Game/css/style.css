@@ -1,4 +1,8 @@
 /* style.css */
+*{
+  background-color: black;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -9,7 +13,7 @@ html, body {
   }
   
   canvas {
-    border: 1px solid #000; /* Optional: Adds a border for visibility */
+    border: 3px solid #ffffff; /* Optional: Adds a border for visibility */
     background-color: black;
   }
 
