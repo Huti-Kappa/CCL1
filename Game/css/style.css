@@ -13,7 +13,7 @@ html, body {
   }
   
   canvas {
-    border: 3px solid #ffffff; /* Optional: Adds a border for visibility */
+    border: 5px solid #ffffff; /* Optional: Adds a border for visibility */
     background-color: black;
   }
 

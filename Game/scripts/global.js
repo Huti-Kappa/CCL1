@@ -50,9 +50,9 @@ global.boss = new Boss(global.canvas.width/2-150,-10,300,300, './images/sprite3.
 
 global.bosses = [
     new Boss(global.canvas.width/2-150,-10,300,300, './images/sprite3.png', 21, 1, 0, 20,global.enemy.dialogue,global.enemy.dialogueIntervall,19,20,15,18),
-    new Boss(global.canvas.width/2-120,50,250,250,'./images/sprite1.png',12,1,0,5,global.enemy.dialogue,global.enemy.dialogueIntervall,10,11,8,9),
-    new Boss(global.canvas.width/2-190,20,300,300, './images/sprite4.png', 4, 1, 0, 1,global.enemy.dialogue,global.enemy.dialogueIntervall,0,1,2,3),
-    new Boss(global.canvas.width/2-150,-10,300,300, './images/sprite4.png', 21, 1, 0, 20,global.enemy.dialogue,global.enemy.dialogueIntervall,19,20,15,18),
+    new Boss(global.canvas.width/2-120,50,250,250,'./images/sprite1.png',12,1,0,5,global.enemyArray[1].dialogue,global.enemyArray[1].dialogueIntervall,10,11,8,9),
+    new Boss(global.canvas.width/2-190,20,300,300, './images/sprite4.png', 4, 1, 0, 1,global.enemyArray[2].dialogue,global.enemyArray[2].dialogueIntervall,0,1,2,3),
+    new Boss(global.canvas.width/2-150,-10,300,300, './images/sprite4.png', 21, 1, 0, 20,global.enemyArray[2].dialogue,global.enemyArray[2].dialogueIntervall,19,20,15,18),
 ];
 
 //global.sp = new Text(-300,200,100,100,"Sets of Numbers",25,"Tiny5","white");
@@ -63,7 +63,7 @@ global.centerimg.src = './images/hitbox.png';
 global.pillar = new Image();
 global.pillar.src = './images/pillar.png';
 
-global.gameMusic = new Music("joni",0.8);
+global.gameMusic = new Music("joni",0.4);
 global.hit = new Music("hit",0.5);
 global.miss = new Music("miss",0.5);
 global.voice = new Music("voice",0.2);

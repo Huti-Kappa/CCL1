@@ -174,6 +174,7 @@ export const gameSettings = {
                     global.currentScreenValue = gs.mainScreen;
                     console.log("Restart!");
                     global.boss = global.bosses[global.currentBoss];
+                    global.bg.startMusic();
                 }
             },
         ],
@@ -209,6 +210,7 @@ export const gameSettings = {
                     global.currentScreenValue = gs.mainScreen;
                     console.log("Restart!");
                     global.boss = global.bosses[global.currentBoss];
+                    global.bg.startMusic();
                 }
             },
         ],
@@ -262,6 +264,7 @@ export const gameSettings = {
                     global.currentBoss = 0;
                     global.currentScreenValue = gs.mainScreen;
                     console.log("Restart!");
+                    global.bg.startMusic();
                 }
             },
             {
@@ -324,7 +327,7 @@ export const gameSettings = {
                     global.enemyCounter = 0;
                     global.gameMusic.setMusic(global.musicArray[global.currentBoss]);
                     global.gameMusic.startMusic();
-                
+                    global.bg.stopMusic();
                 }
             },
             {
@@ -338,6 +341,7 @@ export const gameSettings = {
                     global.enemyCounter = 0;
                     global.gameMusic.setMusic(global.musicArray[global.currentBoss]);
                     global.gameMusic.startMusic();
+                    global.bg.stopMusic();
                 }
             },
             {
@@ -351,6 +355,7 @@ export const gameSettings = {
                     global.enemyCounter = 0;
                     global.gameMusic.setMusic(global.musicArray[global.currentBoss]);
                     global.gameMusic.startMusic();
+                    global.bg.stopMusic();
                 }
             },
         ],
