@@ -1,6 +1,7 @@
 export class Music{
-    constructor(musicHtmlID){
+    constructor(musicHtmlID,x){
         this.music = document.getElementById(musicHtmlID);
+        this.music.volume = x;
     }
 
     startMusic = function () {

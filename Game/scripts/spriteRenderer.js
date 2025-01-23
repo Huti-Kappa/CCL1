@@ -39,7 +39,7 @@ export class SpriteRender {
     };
 
     draw = function () {
-        let sprite = this.animationData.animationSprites[0];
+        let sprite = this.getNextSprite();
         global.ctx.drawImage(sprite, this.x, this.y, this.width, this.height);
     };
 

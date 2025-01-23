@@ -1,4 +1,5 @@
 import { global } from "./global.js";
+import { gameSettings as gs} from './settings.js';
 
 function gameLoop(totalRunningTime) {
     global.deltaTime = (totalRunningTime - global.prevTotalRunningTime) / 1000; // Convert ms to seconds
@@ -8,10 +9,14 @@ function gameLoop(totalRunningTime) {
     if (global.currentScreen != 1) {
         global.state.screenStateManager();
     } else {
+        global.ctx.font = `mania`;
+        global.ctx.fillText("Progress", 170, 690);
+        global.ctx.fillText("HP", 950, 690);
         bar(120,700,300,10);
         healthBar(global.canvas.width-420,700,300,10);
-        global.boss.draw();
         global.boss.talk();
+        global.boss.draw();
+        
         global.ctx.drawImage(global.centerimg,global.centerX-200/2,global.centerY-200/2,200,200);
         global.ctx.drawImage(global.pillar,0,0,global.canvas.width,global.canvas.height);
         global.center.draw();
@@ -37,6 +42,7 @@ function gameLoop(totalRunningTime) {
         animateDirections();
     }
     //global.sp.draw(50);
+    
     global.checkStatus();
     requestAnimationFrame(gameLoop);
 }
@@ -53,6 +59,7 @@ function animateDirections() {
 }
 
 function controlls(event) {
+    if(global.currentScreen===1){
     const directionMap = {
         w: { direction: 2, animation: global.top },
         a: { direction: 1, animation: global.left },
@@ -82,6 +89,7 @@ function controlls(event) {
         }
     }
 }
+}
 
 function bar(x,y,width,height){
     global.ctx.fillStyle = "grey";
@@ -92,11 +100,12 @@ function bar(x,y,width,height){
 }
 
 function healthBar(x,y,width,height){
+    
     global.ctx.fillStyle = "grey";
-    global.ctx.fillRect(x,y,global.enemy.attackPatterns.length,height); // Hier "fillRect" statt "drawRect"
+    global.ctx.fillRect(x,y,gs.player.health*30,height); // Hier "fillRect" statt "drawRect"
     console.log(global.enemy.attackPatterns.length);
     global.ctx.fillStyle = "red";
-    global.ctx.fillRect(x,y,global.enemy.attackPatterns.length-global.enemyCounter,height); // Hier "fillRect" statt "drawRect"
+    global.ctx.fillRect(x,y,global.hp*30,height); // Hier "fillRect" statt "drawRect"
 }
 
 

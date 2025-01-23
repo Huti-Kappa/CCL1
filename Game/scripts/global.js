@@ -22,10 +22,11 @@ global.centerY = global.canvas.height / 2;
 
 global.mainScreen = new Screen();
 global.gameOver = new Screen();
-global.winScreen = new Screen();
 global.pauseScreen = new Screen();
 global.explanation = new Screen();
 global.win = new Screen();
+global.chooseEnemy = new Screen();
+global.realWin = new Screen();
 
 global.allGameObjects = [];
 global.hitCounter = 0;
@@ -33,7 +34,7 @@ global.hp = gs.player.health;
 global.isMouseClicked = false;
 
 global.enemyArray= [gs.enemy1,gs.enemy2,gs.enemy3,gs.enemy4];
-global.musicArray= ["joni","gameMusic","vayvay"];
+global.musicArray= ["joni","vayvay","gameMusic"];
 global.enemyCounter = 0;
 global.enemyAmount = 0;
 global.enemy = global.enemyArray[0];
@@ -45,12 +46,14 @@ global.currentScreenButtons = global.mainScreen;
 
 global.state = new State();
 
-global.boss = new Boss(global.canvas.width/2-120,50,250,250,'./images/sprite.png',12,1,0,5,global.enemy.dialogue,global.enemy.dialogueIntervall);
-//global.boss = new Boss(global.canvas.width/2-160,50,250,250,'./images/sprite.png',6,1,0,3,global.enemy.dialogue,global.enemy.dialogueIntervall);
+global.boss = new Boss(global.canvas.width/2-150,-10,300,300, './images/sprite3.png', 21, 1, 0, 20,global.enemy.dialogue,global.enemy.dialogueIntervall,19,20,15,18),
 
-
-
-
+global.bosses = [
+    new Boss(global.canvas.width/2-150,-10,300,300, './images/sprite3.png', 21, 1, 0, 20,global.enemy.dialogue,global.enemy.dialogueIntervall,19,20,15,18),
+    new Boss(global.canvas.width/2-120,50,250,250,'./images/sprite1.png',12,1,0,5,global.enemy.dialogue,global.enemy.dialogueIntervall,10,11,8,9),
+    new Boss(global.canvas.width/2-190,20,300,300, './images/sprite4.png', 4, 1, 0, 1,global.enemy.dialogue,global.enemy.dialogueIntervall,0,1,2,3),
+    new Boss(global.canvas.width/2-150,-10,300,300, './images/sprite4.png', 21, 1, 0, 20,global.enemy.dialogue,global.enemy.dialogueIntervall,19,20,15,18),
+];
 
 //global.sp = new Text(-300,200,100,100,"Sets of Numbers",25,"Tiny5","white");
 global.center = new Center();
@@ -60,10 +63,10 @@ global.centerimg.src = './images/hitbox.png';
 global.pillar = new Image();
 global.pillar.src = './images/pillar.png';
 
-global.gameMusic = new Music("joni");
-global.hit = new Music("hit");
-global.miss = new Music("miss");
-global.voice = new Music("voice");
+global.gameMusic = new Music("joni",0.8);
+global.hit = new Music("hit",0.5);
+global.miss = new Music("miss",0.5);
+global.voice = new Music("voice",0.2);
 
 
 global.handleEnemyCreation = function () {
@@ -86,22 +89,23 @@ global.checkStatus = function () {
 }
 
 global.resetStage = function () {
+    if(global.currentBoss==2){
+        global.currentScreen=8;
+    } else {
     console.log("test");
     global.enemyCounter = 0;
     global.enemyAmount = 0;
     global.hitCounter = 0;
     global.allGameObjects = [];
 
-    if(global.currentBoss==3){
-        console.log("YOU WON")
-    }
     console.log(this.currentBoss);
     global.currentBoss++;
+    global.boss = global.bosses[global.currentBoss];
     global.gameMusic.stopMusic();
     global.currentScreen=6;
     global.enemy = global.enemyArray[global.currentBoss];
     global.enemyCounter = 0;
-
+    }
 }
 
 document.addEventListener('mousemove', (e) => {

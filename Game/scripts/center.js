@@ -25,10 +25,10 @@ export class Center{
     }
 
     draw(){
-        this.left.animate();
-        this.top.animate();
-        this.right.animate();
-        this.bottom.animate();
+        this.left.draw();
+        this.top.draw();
+        this.right.draw();
+        this.bottom.draw();
     }
 
     active(){

@@ -81,7 +81,9 @@ export class State{
                 break;
             case 2:
                 global.gameMusic.stopMusic();
+                global.voice.stopMusic();
                 global.hit.stopMusic();
+                global.miss.stopMusic();
                 global.currentScreenValue = gs.gameOver;
                 global.currentScreenButtons = global.gameOver;
                 global.state.setupScreen(global.gameOver,global.currentScreenValue);
@@ -89,7 +91,9 @@ export class State{
                 break;
             case 5:
                 global.gameMusic.stopMusic();
+                global.voice.stopMusic();
                 global.hit.stopMusic();
+                global.miss.stopMusic();
                 global.currentScreenValue = gs.explanation;
                 global.currentScreenButtons = global.explanation;
                 global.state.setupScreen(global.explanation,global.currentScreenValue);
@@ -98,6 +102,7 @@ export class State{
             case 6:
                     global.gameMusic.setMusic(global.musicArray[global.currentBoss]);
                     global.gameMusic.stopMusic();
+                    global.voice.stopMusic();
                     global.hit.stopMusic();
                     global.miss.stopMusic();
                     global.currentScreenValue = gs.win;
@@ -105,6 +110,26 @@ export class State{
                     global.state.setupScreen(global.win,global.currentScreenValue);
                     global.currentScreenButtons.draw();
                     break;
+            case 7:
+                global.gameMusic.stopMusic();
+                global.voice.stopMusic();
+                global.hit.stopMusic();
+                global.miss.stopMusic();
+                global.currentScreenValue = gs.chooseEnemy;
+                global.currentScreenButtons = global.chooseEnemy;
+                global.state.setupScreen(global.chooseEnemy,global.currentScreenValue);
+                global.currentScreenButtons.draw();
+                break;
+            case 8:
+                global.gameMusic.stopMusic();
+                global.voice.stopMusic();
+                global.hit.stopMusic();
+                global.miss.stopMusic();
+                global.currentScreenValue = gs.realWin;
+                global.currentScreenButtons = global.realWin;
+                global.state.setupScreen(global.realWin,global.currentScreenValue);
+                global.currentScreenButtons.draw();
+                break;
             default:
                 // Handle other cases or default behavior
                 break;
