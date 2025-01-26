@@ -28,7 +28,10 @@ export class Text {
         global.ctx.fillText(this.text.slice(0,this.p), global.centerX-this.x/2, this.y);
     }
 
-
+    reset() {
+        this.textCreationTime = 0; // Reset the timer for character rendering
+        this.p = 0; // Reset the number of characters rendered
+    }
 }
 
 

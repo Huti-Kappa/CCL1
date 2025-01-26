@@ -152,7 +152,7 @@ export const gameSettings = {
             {
                 label: "Proceed",
                 action: () => {
-                    global.gameMusic.stopMusic();
+                    global.gameMusic.stopMusic();              
                     console.log("test");
                     global.gameMusic.startMusic();
                     global.currentScreen = 1;
@@ -168,13 +168,12 @@ export const gameSettings = {
                     global.hitCounter = 0;
                     global.enemy = global.enemyArray[0];
                     global.hp = gs.player.health;
-                    global.isMouseClicked = false;
-                    global.currentScreen = 0;
                     global.currentBoss = 0;
                     global.currentScreenValue = gs.mainScreen;
                     console.log("Restart!");
                     global.boss = global.bosses[global.currentBoss];
                     global.bg.startMusic();
+                    global.currentScreen = 0;
                 }
             },
         ],
@@ -204,13 +203,12 @@ export const gameSettings = {
                     global.hitCounter = 0;
                     global.enemy = global.enemyArray[0];
                     global.hp = gs.player.health;
-                    global.isMouseClicked = false;
-                    global.currentScreen = 0;
                     global.currentBoss = 0;
                     global.currentScreenValue = gs.mainScreen;
                     console.log("Restart!");
                     global.boss = global.bosses[global.currentBoss];
                     global.bg.startMusic();
+                    global.currentScreen = 0;
                 }
             },
         ],
@@ -238,15 +236,14 @@ export const gameSettings = {
                     global.enemyCounter = 0;
                     global.enemyAmount = 0;
                     global.hitCounter = 0;
-                    global.enemy = global.enemyArray[0];
                     global.hp = gs.player.health;
-                    global.isMouseClicked = false;
-                    global.currentScreen = 1;
                     global.currentBoss = 0;
                     global.currentScreenValue = gs.mainScreen;
                     console.log("Restart!");
                     global.ctx.clearRect(0, 0, global.canvas.width, global.canvas.height);
+                    global.boss.reset();
                     global.gameMusic.startMusic();
+                    global.currentScreen = 1;
                 }
             },
             {
@@ -258,13 +255,12 @@ export const gameSettings = {
                     global.enemyAmount = 0;
                     global.hitCounter = 0;
                     global.enemy = global.enemyArray[0];
-                    global.hp = gs.player.health;
-                    global.isMouseClicked = false;
-                    global.currentScreen = 0;
+                    global.hp = gs.player.health;             
                     global.currentBoss = 0;
                     global.currentScreenValue = gs.mainScreen;
                     console.log("Restart!");
                     global.bg.startMusic();
+                    global.currentScreen = 0;
                 }
             },
             {
@@ -292,11 +288,10 @@ export const gameSettings = {
         buttons: [{
             label: "Proceed!",
             action: () => {
-
                 console.log("Game Started!");
-                global.currentScreen=1;
                 global.bg.stopMusic();
                 global.gameMusic.startMusic();
+                global.currentScreen=1;
             }
         },],
         font: "mania",
@@ -320,13 +315,13 @@ export const gameSettings = {
                 label: "1",
                 action: () => {
                     console.log("Game Started!");
-                    global.currentScreen=1;
                     global.currentBoss=0;
                     global.boss = global.bosses[global.currentBoss];
                     global.enemy = global.enemyArray[global.currentBoss];
                     global.enemyCounter = 0;
                     global.gameMusic.setMusic(global.musicArray[global.currentBoss]);
                     global.gameMusic.startMusic();
+                    global.currentScreen=1;
                     global.bg.stopMusic();
                 }
             },
@@ -334,13 +329,13 @@ export const gameSettings = {
                 label: "2",
                 action: () => {
                     console.log("Settings Opened!");
-                    global.currentScreen=1;
                     global.currentBoss=1;
                     global.boss = global.bosses[global.currentBoss];
                     global.enemy = global.enemyArray[global.currentBoss];
                     global.enemyCounter = 0;
                     global.gameMusic.setMusic(global.musicArray[global.currentBoss]);
                     global.gameMusic.startMusic();
+                    global.currentScreen=1;
                     global.bg.stopMusic();
                 }
             },
@@ -348,13 +343,13 @@ export const gameSettings = {
                 label: "3",
                 action: () => {
                     console.log("Credits Displayed!");
-                    global.currentScreen=1;
                     global.currentBoss=2;
                     global.boss = global.bosses[global.currentBoss];
                     global.enemy = global.enemyArray[global.currentBoss];
                     global.enemyCounter = 0;
                     global.gameMusic.setMusic(global.musicArray[global.currentBoss]);
                     global.gameMusic.startMusic();
+                    global.currentScreen=1;
                     global.bg.stopMusic();
                 }
             },

@@ -19,6 +19,10 @@ global.enemyCreationTime = 0;
 global.centerX = global.canvas.width / 2;
 global.centerY = global.canvas.height / 2;
 
+global.zoomFactor = 1; 
+global.targetZoomFactor = 1; 
+global.zoomSpeed = 0.1; 
+
 
 global.mainScreen = new Screen();
 global.gameOver = new Screen();
@@ -122,16 +126,16 @@ document.addEventListener('click', () => {
 
 global.handleClickAction = function() {
     for (const key in global.currentScreenButtons.buttons) {
-        global.currentScreenButtons.buttons[key].clickme();
+        global.currentScreenButtons.buttons[key].handleClick();
     }
     console.log("Click action triggered at:", global.mouseX, global.mouseY);
 }
 
 global.setupCenter = function(){
-    global.left = new SpriteRender(global.canvas.width/2 -100,global.canvas.height/2-20,40,40);
-    global.top = new SpriteRender(global.canvas.width/2 -20,global.canvas.height/2-100,40,40);
-    global.right = new SpriteRender(global.canvas.width/2 +60,global.canvas.height/2-20,40,40);
-    global.bottom = new SpriteRender(global.canvas.width/2 -20,global.canvas.height/2+60,40,40);
+    global.left = new SpriteRender(global.canvas.width/2 -105,global.canvas.height/2-25,50,50);
+    global.top = new SpriteRender(global.canvas.width/2 -25,global.canvas.height/2-105,50,50);
+    global.right = new SpriteRender(global.canvas.width/2 +55,global.canvas.height/2-25,50,50);
+    global.bottom = new SpriteRender(global.canvas.width/2 -25,global.canvas.height/2+55,50,50);
     global.left.loadImagesFromSpritesheet('./images/hit_1_sheet.png',4,1);
     global.left.switchCurrentSprites(0, 3);
     global.top.loadImagesFromSpritesheet('./images/hit_2_sheet.png',4,1);

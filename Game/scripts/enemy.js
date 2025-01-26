@@ -107,9 +107,9 @@ export class Enemy {
             global.hitCounter++;
             if(val===1){
                 
-                global.hit.hitStart();
+                global.hit.hitMusic();
             }else{
-                global.miss.hitStart();
+                global.miss.hitMusic();
             }
 
         }

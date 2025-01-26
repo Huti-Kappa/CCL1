@@ -3,68 +3,76 @@ import { global } from "./global.js";
 import { Text } from "./text.js";
 
 export class Boss {
-    constructor(x, y, width, height, image, cols, rows, start, end, dialogue, delays,f,g,idleX,idleY) {
+    constructor(x, y, width, height, image, cols, rows, start, end, dialogue, delays, f, g, idleX, idleY) {
+        // Initialize sprite
         this.sprite = new SpriteRender(x, y, width, height);
         this.sprite.loadImagesFromSpritesheet(image, cols, rows);
         this.sprite.switchCurrentSprites(start, end);
+
+        // Initialize dialogue-related properties
         this.dialogue = dialogue;
-        this.check = true;
-        this.counter = true;
-        this.speeches = [];
-        this.counter = 0;
         this.delays = delays; // Array of delays between each speech text (in milliseconds)
+        this.speeches = dialogue.map((line) => new Text(-300, 200, 100, 100, line[0], 25, "mania", "white"));
         this.state = 0; // State for tracking the dialogue
         this.timeAccumulator = 0; // Accumulates time for delays
-        this.f = f;
-        this.g = g;
-        this.start = start;
-        this.end = end;
-        this.idleX = idleX;
-        this.idleY = idleY;
-        // Create speech Text objects dynamically
-        for (let i = 0; i < this.dialogue.length; i++) {
-            this.speeches.push(new Text(-300, 200, 100, 100, this.dialogue[i][0], 25, "mania", "white"));
-        }
+
+        // Initialize sprite state variables
+        this.isTalking = true;
+        this.switchBackToIdle = true;
+        this.startFrame = start;
+        this.endFrame = end;
+        this.talkFrameStart = f;
+        this.talkFrameEnd = g;
+        this.idleFrameStart = idleX;
+        this.idleFrameEnd = idleY;
     }
 
+    // Draws the Boss sprite on the canvas.
     draw() {
         this.sprite.draw();
     }
 
+    // Manages the Boss's dialogue and speech display.
     talk() {
-        if(this.check==false){
-            this.sprite.switchCurrentSprites(this.f,this.g);
-            this.check =true;
+        if (!this.isTalking) {
+            this.sprite.switchCurrentSprites(this.talkFrameStart, this.talkFrameEnd);
+            this.isTalking = true;
         }
-        // Update the accumulator with deltaTime
+
         this.timeAccumulator += global.deltaTime;
-        // Check if the state is within valid range
+
         if (this.state < this.speeches.length) {
-            
             const currentSpeech = this.speeches[this.state];
             currentSpeech.draw(25);
             global.voice.startMusic();
 
-            // Check if the current speech is fully rendered
             if (currentSpeech.p >= currentSpeech.text.length) {
                 const delay = this.delays[this.state] || 1000; // Use custom delay or default to 1000ms
                 global.voice.stopMusic();
-                this.sprite.switchCurrentSprites(this.idleX,this.idleY)
-                //this.sprite.switchCurrentSprites(this.f, this.g);
-                // If the delay has passed, move to the next speech
+                this.sprite.switchCurrentSprites(this.idleFrameStart, this.idleFrameEnd);
+
                 if (this.timeAccumulator > delay) {
-                    console.log("executed");
-                    this.state++; // Move to the next speech
-                    this.timeAccumulator = 0; // Reset the accumulator
-                    this.check = false;
-                } 
+                    this.state++;
+                    this.timeAccumulator = 0;
+                    this.isTalking = false;
+                }
             }
         }
     }
 
+    // Switches the current sprite animation to the specified range.
     switchSprites(start, end) {
         this.sprite.switchCurrentSprites(start, end);
     }
 
-
+    // Resets the Boss's dialogue and animation state for re-entry into the fight.
+    reset() {
+        this.state = 0; // Reset dialogue state
+        this.timeAccumulator = 0; // Reset delay timer
+        this.isTalking = true; // Reset talking animation
+        this.speeches.forEach((speech) => {
+            speech.reset(); // Reset Text objects (e.g., character rendering position)
+        });
+        this.sprite.switchCurrentSprites(this.idleFrameStart, this.idleFrameEnd); // Reset to idle animation
+    }
 }

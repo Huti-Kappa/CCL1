@@ -58,13 +58,13 @@ export class SpriteRender {
 
 
     loadImages = function (imageSources) {
-        /* first load images from path */
+        //first load images from path
 
         for (let i = 0; i < imageSources.length; i++) {
             let image = new Image();
             image.src = imageSources[i];
     
-            /* after images have been loaded, they are added to an array that consists of each single sprite for our animation */
+            //after images have been loaded, they are added to an array that consists of each single sprite for our animation
             this.animationData.animationSprites.push(image);
         }
 
@@ -72,8 +72,6 @@ export class SpriteRender {
 
     loadImagesFromSpritesheet(spritesheetPath, cols, rows) {
         // Calculate the number of rows and columns
-        //const cols = Math.floor(spritesheetWidth / singleSpriteWidth);
-        //const rows = Math.floor(spritesheetHeight / singleSpriteHeight);
         const totalSprites = cols * rows;
     
         // Pre-create an array with `Image` objects for all sprites
